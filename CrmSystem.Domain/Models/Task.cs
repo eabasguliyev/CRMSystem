@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CrmSystem.Domain.Models
 {
@@ -14,6 +15,7 @@ namespace CrmSystem.Domain.Models
         public RecordDetail ModifiedBy { get; set; }
         public StatusOption Status { get; set; }
         public string Description { get; set; }
+        public List<Note> Notes { get; set; }
     }
 
     public enum StatusOption
