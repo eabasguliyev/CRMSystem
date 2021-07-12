@@ -2,3 +2,5 @@
 CrmSystem.Domain/bin/
 CrmSystem.Domain/obj/
 CrmSystem.Test/
+CrmSystem.EntityFramework/bin/
+CrmSystem.EntityFramework/obj/

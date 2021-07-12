@@ -7,6 +7,7 @@ namespace CrmSystem.Domain.Models
         public string Name { get; set; }
         public Product Product { get; set; }
         public Employee Owner { get; set; }
+        public int ContractId { get; set; }
         public Contact Contact { get; set; }
         public DateTime ContractDate { get; set; }
         public SaleType SaleType { get; set; }

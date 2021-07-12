@@ -10,7 +10,7 @@ namespace CrmSystem.Domain.Repositories
     {
         TEntity Get(int id);
         IEnumerable<TEntity> GetAll();
-        TEntity Find(Expression<Func<TEntity, bool>> predicate);
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 

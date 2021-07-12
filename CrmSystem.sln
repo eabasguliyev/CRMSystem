@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrmSystem.Domain", "CrmSyst
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrmSystem.Test", "CrmSystem.Test\CrmSystem.Test.csproj", "{26C91CC9-A74D-4045-87F5-D3B512C1F28D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmSystem.EntityFramework", "CrmSystem.EntityFramework\CrmSystem.EntityFramework.csproj", "{597C4E4F-0DFC-41E5-A32B-B68A080595FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{26C91CC9-A74D-4045-87F5-D3B512C1F28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26C91CC9-A74D-4045-87F5-D3B512C1F28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26C91CC9-A74D-4045-87F5-D3B512C1F28D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{597C4E4F-0DFC-41E5-A32B-B68A080595FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{597C4E4F-0DFC-41E5-A32B-B68A080595FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{597C4E4F-0DFC-41E5-A32B-B68A080595FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{597C4E4F-0DFC-41E5-A32B-B68A080595FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

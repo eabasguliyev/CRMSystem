@@ -9,6 +9,7 @@ namespace CrmSystem.Domain
         IEmployeeRepository Employees { get; }
         IContractRepository Contracts { get; }
         IProductRepository Products { get; }
+        ITaskRepository Tasks { get; }
 
         void Save();
     }

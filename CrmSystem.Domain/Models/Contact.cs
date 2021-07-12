@@ -11,7 +11,8 @@ namespace CrmSystem.Domain.Models
         public string Description { get; set; }
         public RecordDetail CreatedBy { get; set; }
         public RecordDetail ModifiedBy { get; set; }
-        public List<Note> Notes { get; set; }
+        public List<ContactNote> Notes { get; set; }
         public List<Task> Tasks { get; set; }
+        public List<Contract> Contracts { get; set; }
     }
 }

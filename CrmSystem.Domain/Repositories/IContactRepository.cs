@@ -10,7 +10,6 @@ namespace CrmSystem.Domain.Repositories
 
         IEnumerable<Task> GetOpenTasks(int id);
         IEnumerable<Task> GetClosedTasks(int id);
-
-        IEnumerable<Task> GetAllOpenTasks();
+        IEnumerable<Contract> GetContracts(int id);
     }
 }

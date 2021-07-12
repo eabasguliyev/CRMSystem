@@ -8,13 +8,14 @@ namespace CrmSystem.Domain.Models
         public string Subject { get; set; }
         public DateTime DueDate { get; set; }
         public PriorityOption Priority{ get; set; }
+        public int ContactId { get; set; }
         public Contact Contact { get; set; }
         public Employee Owner { get; set; }
         public RecordDetail CreatedBy { get; set; }
         public RecordDetail ModifiedBy { get; set; }
         public StatusOption Status { get; set; }
         public string Description { get; set; }
-        public List<Note> Notes { get; set; }
+        public List<TaskNote> Notes { get; set; }
     }
 
     public enum StatusOption

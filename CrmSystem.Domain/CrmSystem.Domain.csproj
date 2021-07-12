@@ -11,8 +11,4 @@
     <Compile Remove="Models\TaskRecordDetail.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
