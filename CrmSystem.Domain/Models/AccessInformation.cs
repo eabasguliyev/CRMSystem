@@ -1,6 +1,6 @@
 ﻿namespace CrmSystem.Domain.Models
 {
-    public class AddressInformation
+    public class AddressInformation:DomainObject
     {
         public string Street { get; set; }
         public string City { get; set; }

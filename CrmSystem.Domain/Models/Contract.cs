@@ -2,9 +2,8 @@
 
 namespace CrmSystem.Domain.Models
 {
-    public class Contract
+    public class Contract:DomainObject
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public Product Product { get; set; }
         public Employee Owner { get; set; }

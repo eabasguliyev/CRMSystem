@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace CrmSystem.Domain.Models
 {
-    public class Task
+    public class Task:DomainObject
     {
-        public int Id { get; set; }
         public string Subject { get; set; }
         public DateTime DueDate { get; set; }
         public PriorityOption Priority{ get; set; }
