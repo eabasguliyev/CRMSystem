@@ -4,9 +4,10 @@ namespace CrmSystem.EntityFramework
 {
     public class CrmSystemContextFactory:IDbContextFactory<CrmSystemContext>
     {
+        private static CrmSystemContext _context;
         public CrmSystemContext Create()
         {
-            return new CrmSystemContext(Properties.Resources.ResourceManager.GetString("ConnectionString"));
+            return _context ??= new CrmSystemContext(Properties.Resources.ResourceManager.GetString("ConnectionString"));
         }
     }
 }
