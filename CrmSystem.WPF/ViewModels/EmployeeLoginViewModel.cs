@@ -1,4 +1,6 @@
 ﻿using System.Windows.Input;
+using CrmSystem.EntityFramework;
+using CrmSystem.EntityFramework.Repositories;
 using CrmSystem.WPF.Helpers;
 using CrmSystem.WPF.ViewModels.Services;
 
@@ -14,14 +16,14 @@ namespace CrmSystem.WPF.ViewModels
 
         public EmployeeLoginViewModel()
         {
-
+            LoginCommand = new RelayCommand(Login);
         }
 
         public void Login()
         {
-            var login = new EmployeeLogin();
+            var repo = new EmployeeRepository(new CrmSystemContextFactory().Create());
 
-            var employee = login.Login(Email, Password);
+            var employee = new EmployeeLogin(repo).Login(Email, Password);
 
             if (employee == null)
                 return;
