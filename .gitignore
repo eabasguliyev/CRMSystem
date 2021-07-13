@@ -4,3 +4,5 @@ CrmSystem.Domain/obj/
 CrmSystem.Test/
 CrmSystem.EntityFramework/bin/
 CrmSystem.EntityFramework/obj/
+CrmSystem.WPF/bin
+CrmSystem.WPF/obj
