@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
+using CrmSystem.Domain.Models;
 using CrmSystem.EntityFramework;
 using CrmSystem.EntityFramework.Repositories;
 using CrmSystem.WPF.Helpers;
@@ -14,12 +16,14 @@ namespace CrmSystem.WPF.ViewModels
 
         public ICommand LoginCommand { get; set; }
 
+        public event Action<Employee> LoggedIn;
+
         public EmployeeLoginViewModel()
         {
             LoginCommand = new RelayCommand(Login);
         }
 
-        public void Login()
+        private void Login()
         {
             var repo = new EmployeeRepository(new CrmSystemContextFactory().Create());
 
@@ -28,7 +32,8 @@ namespace CrmSystem.WPF.ViewModels
             if (employee == null)
                 return;
 
-            // TODO: nav to mainview.
+
+            LoggedIn?.Invoke(employee);
         }
 
     }
