@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="Main View" FontSize="25"/>
+        <TextBlock>
+            <Run Text="User "/>
+            <Run Text="{Binding Employee.FullName, Mode=OneWay}"/>
+        </TextBlock>
     </Grid>
 </UserControl>

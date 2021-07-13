@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\Services\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CrmSystem.Domain\CrmSystem.Domain.csproj" />
     <ProjectReference Include="..\CrmSystem.EntityFramework\CrmSystem.EntityFramework.csproj" />
   </ItemGroup>

@@ -7,7 +7,8 @@ namespace CrmSystem.EntityFramework
         private static CrmSystemContext _context;
         public CrmSystemContext Create()
         {
-            return _context ??= new CrmSystemContext(Properties.Resources.ResourceManager.GetString("ConnectionString"));
+            //return _context ??= new CrmSystemContext(Properties.Resources.ResourceManager.GetString("ConnectionString"));
+            return _context ??= new CrmSystemContext();
         }
     }
 }

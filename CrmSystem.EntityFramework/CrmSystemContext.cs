@@ -14,7 +14,7 @@ namespace CrmSystem.EntityFramework
         public DbSet<TaskNote> TaskNotes { get; set; }
 
 
-        public CrmSystemContext(string connectionString):base(connectionString)
+        public CrmSystemContext():base(Properties.Resources.ResourceManager.GetString("ConnectionString"))
         {
             base.Configuration.LazyLoadingEnabled = false;
         }
@@ -22,7 +22,9 @@ namespace CrmSystem.EntityFramework
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // TODO: add configurations.
+            modelBuilder.Entity<Contact>().Ignore(c => c.FullName);
 
+            modelBuilder.Entity<Employee>().Ignore(e => e.FullName);
             base.OnModelCreating(modelBuilder);
         }
     }
