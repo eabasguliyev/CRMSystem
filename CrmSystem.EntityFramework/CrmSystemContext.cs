@@ -25,6 +25,8 @@ namespace CrmSystem.EntityFramework
             modelBuilder.Entity<Contact>().Ignore(c => c.FullName);
 
             modelBuilder.Entity<Employee>().Ignore(e => e.FullName);
+
+            //modelBuilder.Entity<Contact>().Property(c => c.Birthdate).IsOptional();
             base.OnModelCreating(modelBuilder);
         }
     }

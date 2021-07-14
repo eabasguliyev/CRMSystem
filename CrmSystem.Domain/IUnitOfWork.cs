@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using CrmSystem.Domain.Repositories;
 
 namespace CrmSystem.Domain
@@ -11,6 +12,9 @@ namespace CrmSystem.Domain
         IProductRepository Products { get; }
         ITaskRepository Tasks { get; }
 
+
+
+        //public void ExplicitLoading<TEntity2>(Expression<Func<TEntity2, bool>> predicate) where TEntity2 : class;
         void Save();
     }
 }

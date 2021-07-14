@@ -7,6 +7,7 @@ namespace CrmSystem.Domain.Models
     public class Contact:User
     {
         public string Title { get; set; }
+        public int OwnerId { get; set; }
         public Employee Owner { get; set; }
         public string Description { get; set; }
         public RecordDetail CreatedBy { get; set; }

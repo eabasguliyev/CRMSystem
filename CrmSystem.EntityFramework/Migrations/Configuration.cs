@@ -1,4 +1,5 @@
-﻿using CrmSystem.Domain.Models;
+﻿using System.Collections.Generic;
+using CrmSystem.Domain.Models;
 
 namespace CrmSystem.EntityFramework.Migrations
 {
@@ -35,6 +36,35 @@ namespace CrmSystem.EntityFramework.Migrations
             //    }
             //});
 
+            //context.Contacts.AddRange(new List<Contact>()
+            //{
+            //    new Contact()
+            //    {
+            //        FirstName = "Resul",
+            //        LastName = "Osmanli",
+            //        Email = "resul@gmail.com",
+            //        CreatedBy = new RecordDetail()
+            //        {
+            //            EmployeeId = 1,
+            //            RecordDate = DateTime.Now
+            //        },
+            //        Birthdate = DateTime.Now.AddYears(-20),
+            //        OwnerId = 1
+            //    },
+            //    new Contact()
+            //    {
+            //        FirstName = "Senan",
+            //        LastName = "Memmedov",
+            //        Email = "senan2001@gmail.com",
+            //        CreatedBy = new RecordDetail()
+            //        {
+            //            EmployeeId = 1,
+            //            RecordDate = DateTime.Now
+            //        },
+            //        Birthdate = DateTime.Now.AddYears(-16),
+            //        OwnerId = 1
+            //    },
+            //});
 
             //context.SaveChanges();
         }

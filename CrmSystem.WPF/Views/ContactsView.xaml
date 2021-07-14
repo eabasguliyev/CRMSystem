@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CrmSystem.WPF.Views"
+             xmlns:helpers="clr-namespace:CrmSystem.WPF.Helpers"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             helpers:MvvmBehaviors.LoadedMethodName="LoadContacts">
     <Grid Margin="0 5 0 0">
          <Grid.RowDefinitions>
              <RowDefinition Height="Auto"/>
@@ -25,19 +27,25 @@
         </WrapPanel>
 
         <Grid Grid.Row="1">
-            <DataGrid CanUserAddRows="False"
+            <DataGrid ItemsSource="{Binding Contacts}" 
+                      CanUserAddRows="False"
                       AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Fullname"
-                                        Width="*"/>
+                                        Width="*"
+                                        Binding="{Binding FullName, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Phone"
-                                        Width="*"/>
+                                        Width="*"
+                                        Binding="{Binding Phone}"/>
                     <DataGridTextColumn Header="Email"
-                                        Width="*"/>
+                                        Width="*"
+                                        Binding="{Binding Email}"/>
                     <DataGridTextColumn Header="Created By"
-                                        Width="*"/>
+                                        Width="*"
+                                        Binding="{Binding CreatedBy.Employee.FullName}"/>
                     <DataGridTextColumn Header="Updated By"
-                                        Width="*"/>
+                                        Width="*"
+                                        Binding="{Binding ModifiedBy.Employee.FullName}"/>
                     <DataGridTemplateColumn Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

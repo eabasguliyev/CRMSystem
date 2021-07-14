@@ -20,7 +20,7 @@ namespace CrmSystem.EntityFramework.Repositories
             var contact = base.Get(id);
 
             if (contact == null)
-                return null;
+                return null;            
 
             CrmSystemContext.ContactNotes.Where(n => n.ContactId == contact.Id).Load();
 
@@ -61,6 +61,15 @@ namespace CrmSystem.EntityFramework.Repositories
             CrmSystemContext.Contracts.Where(c => c.ContractId == contact.Id).Load();
 
             return contact.Contracts;
+        }
+
+        public IEnumerable<Contact> GetAll()
+        {
+            return (base.GetAll() as DbSet<Contact>).Include(c => c.CreatedBy)
+                .Include(c => c.CreatedBy.Employee)
+                .Include(c => c.ModifiedBy)
+                .Include(c => c.ModifiedBy.Employee)
+                .Include(c => c.Owner);
         }
     }
 }

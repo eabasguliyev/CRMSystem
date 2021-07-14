@@ -6,7 +6,7 @@ using CrmSystem.Domain.Models;
 
 namespace CrmSystem.Domain.Repositories
 {
-    public interface IRepository<TEntity> where TEntity:DomainObject
+    public interface IRepository<TEntity> where TEntity : DomainObject
     {
         TEntity Get(int id);
         IEnumerable<TEntity> GetAll();

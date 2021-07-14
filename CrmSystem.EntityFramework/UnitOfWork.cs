@@ -1,4 +1,8 @@
-﻿using CrmSystem.Domain;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
+using CrmSystem.Domain;
 using CrmSystem.Domain.Repositories;
 
 namespace CrmSystem.EntityFramework
@@ -22,6 +26,11 @@ namespace CrmSystem.EntityFramework
         public IContractRepository Contracts { get; }
         public IProductRepository Products { get; }
         public ITaskRepository Tasks { get; }
+
+        //public void ExplicitLoading<TEntity2>(Expression<Func<TEntity2, bool>> predicate) where TEntity2 : class
+        //{
+        //    _context.Set<TEntity2>().Where(predicate).Load();
+        //}
 
         public void Save()
         {
