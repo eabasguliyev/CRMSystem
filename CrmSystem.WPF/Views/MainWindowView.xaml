@@ -13,5 +13,6 @@
 
     <Grid>
         <ContentPresenter Content="{Binding CurrentViewModel}"/>
+
     </Grid>
 </Window>
