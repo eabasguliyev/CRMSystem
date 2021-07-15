@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using CrmSystem.Domain;
 using CrmSystem.Domain.Models;
+using CrmSystem.EntityFramework;
 using CrmSystem.WPF.Helpers;
 
 namespace CrmSystem.WPF.ViewModels
@@ -10,7 +12,7 @@ namespace CrmSystem.WPF.ViewModels
         private EmployeeLoginViewModel _employeeLoginViewModel;
         private MainViewModel _mainViewModel;
 
-
+        private IUnitOfWork _unitOfWork;
 
         private ObservableObject _currentViewModel;
 
@@ -24,10 +26,13 @@ namespace CrmSystem.WPF.ViewModels
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
                 return;
-            _employeeLoginViewModel = new EmployeeLoginViewModel();
+
+            _unitOfWork = new UnitOfWork(new CrmSystemContextFactory().Create());
+
+            _employeeLoginViewModel = new EmployeeLoginViewModel(_unitOfWork);
             _employeeLoginViewModel.LoggedIn += OnLoggedIn;
 
-            _mainViewModel = new MainViewModel();
+            _mainViewModel = new MainViewModel(_unitOfWork);
 
             CurrentViewModel = _employeeLoginViewModel;
         }

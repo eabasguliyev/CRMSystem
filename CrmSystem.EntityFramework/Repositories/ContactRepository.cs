@@ -63,7 +63,7 @@ namespace CrmSystem.EntityFramework.Repositories
             return contact.Contracts;
         }
 
-        public IEnumerable<Contact> GetAll()
+        public new IEnumerable<Contact> GetAll()
         {
             return (base.GetAll() as DbSet<Contact>).Include(c => c.CreatedBy)
                 .Include(c => c.CreatedBy.Employee)

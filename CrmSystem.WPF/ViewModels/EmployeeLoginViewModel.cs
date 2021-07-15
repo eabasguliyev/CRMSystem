@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using CrmSystem.Domain;
 using CrmSystem.Domain.Models;
 using CrmSystem.EntityFramework;
 using CrmSystem.EntityFramework.Repositories;
@@ -19,16 +20,18 @@ namespace CrmSystem.WPF.ViewModels
 
         public event Action<Employee> LoggedIn;
 
-        public EmployeeLoginViewModel()
+        private IUnitOfWork _unitOfWork;
+
+        public EmployeeLoginViewModel(IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
+
             LoginCommand = new RelayCommand(Login);
         }
 
         private void Login()
         {
-            var repo = new EmployeeRepository(new CrmSystemContextFactory().Create());
-
-            var state = new EmployeeLogin(repo).Login(Email, Password, out Employee employee);
+            var state = new EmployeeLogin(_unitOfWork.Employees).Login(Email, Password, out Employee employee);
 
             if (state == LoginStateOption.WrongEmail)
             {

@@ -3,6 +3,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Input;
+using CrmSystem.Domain;
 using CrmSystem.Domain.Models;
 using CrmSystem.Domain.Repositories;
 using CrmSystem.EntityFramework;
@@ -11,27 +13,63 @@ using CrmSystem.WPF.Helpers;
 
 namespace CrmSystem.WPF.ViewModels
 {
+    public class AddEditContactEventArgs : EventArgs
+    {
+        public bool EditMode { get; set; }
+        public Contact Contact { get; set; }
+    }
+
     public class ContactsViewModel:ObservableObject
     {
-        private IContactRepository _repo;
         private ObservableCollection<Contact> _contacts;
 
+        private IUnitOfWork _unitOfWork;
         public ObservableCollection<Contact> Contacts
         {
             get => _contacts;
             set => base.SetProperty(ref _contacts, value);
         }
 
-        public ContactsViewModel()
+        public ContactsViewModel(IUnitOfWork unitOfWork)
         {
-            _repo = new ContactRepository(new CrmSystemContextFactory().Create());
+            _unitOfWork = unitOfWork;
+
+            CreateContactClickCommand = new RelayCommand(CreateContactClick);
+            EditContactClickCommand = new RelayCommand(EditContactClick);
         }
+
+        public ICommand CreateContactClickCommand { get; set; }
+        public ICommand EditContactClickCommand { get; set; }
+
+        public event EventHandler<AddEditContactEventArgs> CreateContactClicked;
+
+        public Contact SelectedContact { get; set; }
 
         public void LoadContacts()
         {
-            Contacts = new ObservableCollection<Contact>(_repo.GetAll());
-
-            var contactIds = Contacts.Select(c => c.Id);
+            Contacts = new ObservableCollection<Contact>(_unitOfWork.Contacts.GetAll());
         }
+
+        public void CreateContactClick()
+        {
+            CreateContactClicked?.Invoke(this, new AddEditContactEventArgs()
+            {
+                EditMode = false,
+                Contact = new Contact()
+                {
+                    AddressInfo = new AddressInformation()
+                }
+            });
+        }
+
+        public void EditContactClick()
+        {
+            CreateContactClicked?.Invoke(this, new AddEditContactEventArgs()
+            {
+                EditMode = true,
+                Contact = SelectedContact
+            });
+        }
+
     }
 }

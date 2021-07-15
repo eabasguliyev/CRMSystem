@@ -21,8 +21,8 @@ namespace CrmSystem.EntityFramework.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-            
-            
+
+
             //context.Employees.Add(new Employee()
             //{
             //    FirstName = "Elgun",
@@ -63,6 +63,31 @@ namespace CrmSystem.EntityFramework.Migrations
             //        },
             //        Birthdate = DateTime.Now.AddYears(-16),
             //        OwnerId = 1
+            //    },
+            //});
+
+
+            //context.LeadSources.AddRange(new List<LeadSource>()
+            //{
+            //    new LeadSource()
+            //    {
+            //        Name = "None",
+            //    },
+            //    new LeadSource()
+            //    {
+            //        Name = "Facebook",
+            //    },
+            //    new LeadSource()
+            //    {
+            //        Name = "Direct Phone Call",
+            //    },
+            //    new LeadSource()
+            //    {
+            //        Name = "Employee Referral",
+            //    },
+            //    new LeadSource()
+            //    {
+            //        Name = "Research On The Internet",
             //    },
             //});
 

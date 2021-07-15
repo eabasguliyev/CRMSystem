@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace CrmSystem.WPF.Helpers
 {
-    public class MvvmBehaviors
+    public class ContactsViewBehaviors
     {
 
 
@@ -19,7 +19,7 @@ namespace CrmSystem.WPF.Helpers
 
         // Using a DependencyProperty as the backing store for LoadMethodName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LoadedMethodNameProperty =
-            DependencyProperty.RegisterAttached("LoadedMethodName", typeof(string), typeof(MvvmBehaviors), new PropertyMetadata(null, OnLoadMethodNameChanged));
+            DependencyProperty.RegisterAttached("LoadedMethodName", typeof(string), typeof(ContactsViewBehaviors), new PropertyMetadata(null, OnLoadMethodNameChanged));
 
         private static void OnLoadMethodNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

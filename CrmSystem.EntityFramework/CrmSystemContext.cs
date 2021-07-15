@@ -12,8 +12,7 @@ namespace CrmSystem.EntityFramework
         public DbSet<Task> Tasks { get; set; }
         public DbSet<ContactNote> ContactNotes { get; set; }
         public DbSet<TaskNote> TaskNotes { get; set; }
-
-
+        public DbSet<LeadSource> LeadSources { get; set; }
         public CrmSystemContext():base(Properties.Resources.ResourceManager.GetString("ConnectionString"))
         {
             base.Configuration.LazyLoadingEnabled = false;

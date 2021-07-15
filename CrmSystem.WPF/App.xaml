@@ -19,5 +19,9 @@
         <DataTemplate DataType="{x:Type viewModels:ContactsViewModel}">
             <views:ContactsView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:AddEditContactViewModel}">
+            <views:AddEditContactView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

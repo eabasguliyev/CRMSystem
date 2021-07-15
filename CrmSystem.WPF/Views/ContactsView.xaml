@@ -7,7 +7,7 @@
              xmlns:helpers="clr-namespace:CrmSystem.WPF.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             helpers:MvvmBehaviors.LoadedMethodName="LoadContacts">
+             helpers:AddEditContactViewBehaviors.EmployeesLoadMethodName="LoadContacts">
     <Grid Margin="0 5 0 0">
          <Grid.RowDefinitions>
              <RowDefinition Height="Auto"/>
@@ -19,7 +19,8 @@
             <Button Content="Create Contact"
                     FontSize="20"
                     Margin="5"
-                    Padding="5"/>
+                    Padding="5"
+                    Command="{Binding CreateContactClickCommand}"/>
             <Button Content="Actions"
                     FontSize="20"
                     Margin="0 5 5 5"
@@ -29,7 +30,8 @@
         <Grid Grid.Row="1">
             <DataGrid ItemsSource="{Binding Contacts}" 
                       CanUserAddRows="False"
-                      AutoGenerateColumns="False">
+                      AutoGenerateColumns="False"
+                      SelectedItem="{Binding SelectedContact, Mode=OneWayToSource}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Fullname"
                                         Width="*"
@@ -53,7 +55,8 @@
                                     <Button Width="100"
                                             FontSize="18"
                                             Content="Edit"
-                                            Margin="5"/>
+                                            Margin="5"
+                                            Command="{Binding DataContext.EditContactClickCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
                                 </WrapPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
