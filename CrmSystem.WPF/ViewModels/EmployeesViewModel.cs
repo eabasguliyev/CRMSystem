@@ -14,15 +14,29 @@ namespace CrmSystem.WPF.ViewModels
         private IUnitOfWork _unitOfWork;
         private ObservableCollection<BaseEmployee> _employees;
 
-        private AddEmployeeViewModel _addUserView;
-
+        private AddEmployeeViewModel _addUserViewModel;
+        private EmployeeInfoViewModel _employeeInfoViewModel;
 
         private ObservableObject _currentViewModel;
+
+        private BaseEmployee _selectedEmployee;
 
         public ObservableCollection<BaseEmployee> Employees
         {
             get => _employees;
             set => base.SetProperty(ref _employees, value);
+        }
+
+        public BaseEmployee SelectedEmployee
+        {
+            get => _selectedEmployee;
+            set
+            {
+                base.SetProperty(ref _selectedEmployee, value);
+
+                _employeeInfoViewModel.SelectedEmployee = _selectedEmployee;
+                base.SetProperty(ref _currentViewModel, _employeeInfoViewModel, nameof(CurrentViewModel));
+            }
         }
 
         public ObservableObject CurrentViewModel
@@ -38,8 +52,10 @@ namespace CrmSystem.WPF.ViewModels
         {
             _unitOfWork = unitOfWork;
 
-            _addUserView = new AddEmployeeViewModel(unitOfWork);
-            _addUserView.AddUserOrCancelOperation += NavToEmployeesView;
+            _addUserViewModel = new AddEmployeeViewModel(unitOfWork);
+            _addUserViewModel.AddUserOrCancelOperation += NavToEmployeesView;
+
+            _employeeInfoViewModel = new EmployeeInfoViewModel();
 
             AddUserClickCommand = new RelayCommand(AddUserClick);
         }
@@ -54,7 +70,7 @@ namespace CrmSystem.WPF.ViewModels
 
         private void AddUserClick()
         {
-            CurrentViewModel = _addUserView;
+            CurrentViewModel = _addUserViewModel;
         }
 
 

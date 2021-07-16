@@ -47,5 +47,9 @@
         <DataTemplate DataType="{x:Type viewModels:AddEmployeeViewModel}">
             <views:AddEmployeeView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:EmployeeInfoViewModel}">
+            <views:EmployeeInfoView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
