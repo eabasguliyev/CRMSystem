@@ -27,13 +27,40 @@ namespace CrmSystem.WPF.ViewModels
 
             PrepareAccount();
 
-            _unitOfWork.Employees.Add(NewEmployee);
+
+            if (IsRequestedAccount(NewEmployee.Email, out RequestedEmployee requestedEmployee))
+            {
+                MoveDetails(requestedEmployee, NewEmployee);
+                _unitOfWork.RequestedEmployees.Remove(requestedEmployee);
+            }
+            
+            RegisterAccount(NewEmployee);
+
             _unitOfWork.Save();
 
             MessageBox.Show("Account created. You can login now.", "Info", MessageBoxButton.OK,
                 MessageBoxImage.Information);
 
             LoadLoginView?.Invoke();
+        }
+
+        private void MoveDetails(RequestedEmployee requestedEmployee, Employee employee)
+        {
+            employee.Email = requestedEmployee.Email;
+            employee.Role = requestedEmployee.Role;
+            employee.Profile = requestedEmployee.Profile;
+            employee.Company = requestedEmployee.Company;
+        }
+
+        private bool IsRequestedAccount(string email, out RequestedEmployee requestedEmployee)
+        {
+            requestedEmployee = _unitOfWork.RequestedEmployees.SingleOrDefault(re => re.Email == email);
+            return requestedEmployee != null;
+        }
+
+        private void RegisterAccount(Employee employee)
+        {
+            _unitOfWork.Employees.Add(employee);
         }
 
         public event Action LoadLoginView;
