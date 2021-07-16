@@ -17,12 +17,12 @@ namespace CrmSystem.WPF.ViewModels.Services
         {
             var user = _repo.SingleOrDefault(e => e.Email == email);
 
-            employee = user;
+            employee = user as Employee;
 
-            if (user == null)
+            if (employee == null)
                 return LoginStateOption.WrongEmail;
 
-            return user.Password != password ? 
+            return employee.Password != password ? 
                 LoginStateOption.WrongPassword : LoginStateOption.Success;
         }
     }

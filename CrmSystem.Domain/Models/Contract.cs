@@ -13,6 +13,7 @@ namespace CrmSystem.Domain.Models
         public SaleType SaleType { get; set; }
         public RecordDetail CreatedBy { get; set; }
         public RecordDetail ModifiedBy { get; set; }
+        public Company Company { get; set; }
     }
 
     public enum SaleType

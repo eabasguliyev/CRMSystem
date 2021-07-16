@@ -10,6 +10,7 @@ namespace CrmSystem.WPF.ViewModels
     public class MainWindowViewModel:ObservableObject
     {
         private EmployeeLoginViewModel _employeeLoginViewModel;
+        private EmployeeRegisterViewModel _employeeRegisterViewModel;
         private MainViewModel _mainViewModel;
 
         private IUnitOfWork _unitOfWork;
@@ -31,15 +32,32 @@ namespace CrmSystem.WPF.ViewModels
 
             _employeeLoginViewModel = new EmployeeLoginViewModel(_unitOfWork);
             _employeeLoginViewModel.LoggedIn += OnLoggedIn;
+            _employeeLoginViewModel.RegisterButtonClick += NavToRegisterView;
+
+            _employeeRegisterViewModel = new EmployeeRegisterViewModel(_unitOfWork);
+            _employeeRegisterViewModel.LoadLoginView += NavToLoginView;
 
             _mainViewModel = new MainViewModel(_unitOfWork);
 
             CurrentViewModel = _employeeLoginViewModel;
         }
 
+        private void NavToLoginView()
+        {
+            CurrentViewModel = _employeeLoginViewModel;
+        }
+
+        private void NavToRegisterView()
+        {
+            CurrentViewModel = _employeeRegisterViewModel;
+        }
+
         private void OnLoggedIn(Employee employee)
         {
-            _mainViewModel.Employee = employee;
+            App.LoggedUser = employee;
+
+            if (employee.Company != null)
+                App.Company = employee.Company;
 
             CurrentViewModel = _mainViewModel;
         }

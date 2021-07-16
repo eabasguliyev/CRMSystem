@@ -10,10 +10,22 @@
     <Compile Update="Views\AddEditContactView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\AddEmployeeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\CompanySetupView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\ContactsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\EmployeeLoginView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\EmployeeRegisterView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\EmployeesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\MainView.xaml.cs">
@@ -22,9 +34,18 @@
     <Compile Update="Views\MainWindowView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\SettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\AddEditContactView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AddEmployeeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CompanySetupView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ContactsView.xaml">
@@ -33,10 +54,19 @@
     <Page Update="Views\EmployeeLoginView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\EmployeeRegisterView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\EmployeesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\MainView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SettingsView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

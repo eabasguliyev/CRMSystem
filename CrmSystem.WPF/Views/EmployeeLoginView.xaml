@@ -49,13 +49,19 @@
 
         <StackPanel Grid.Row="1" 
                     Orientation="Horizontal"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Center">
                 <Button Content="Login" 
                         FontSize="25"
-                        Width="100"
+                        Width="140"
                         Padding="10 5 10 5"
                         Margin="10"
                         Command="{Binding LoginCommand}"/>
+                <Button Content="Register" 
+                        FontSize="25"
+                        Width="145"
+                        Padding="10 5 10 5"
+                        Margin="10"
+                        Command="{Binding RegisterCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

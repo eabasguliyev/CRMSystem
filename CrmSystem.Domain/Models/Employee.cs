@@ -1,4 +1,6 @@
-﻿namespace CrmSystem.Domain.Models
+﻿using System.Collections.Generic;
+
+namespace CrmSystem.Domain.Models
 {
     public enum RoleOption
     {
@@ -8,13 +10,19 @@
     public enum ProfileOption
     {
         Administrator = 1,
-        Standard
+        Standard,
+        SuperAdmin
     }
 
-    public class Employee:User
+
+    public abstract class BaseEmployee:User
     {
-        public string Password { get; set; }
         public RoleOption Role { get; set; }
         public ProfileOption Profile { get; set; }
+    }
+
+    public class Employee : BaseEmployee
+    {
+        public string Password { get; set; }
     }
 }

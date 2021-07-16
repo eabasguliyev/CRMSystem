@@ -6,6 +6,7 @@ using CrmSystem.Domain.Models;
 using CrmSystem.EntityFramework;
 using CrmSystem.EntityFramework.Repositories;
 using CrmSystem.WPF.Helpers;
+using CrmSystem.WPF.Models.Services;
 using CrmSystem.WPF.ViewModels.Services;
 
 namespace CrmSystem.WPF.ViewModels
@@ -17,9 +18,10 @@ namespace CrmSystem.WPF.ViewModels
 
 
         public ICommand LoginCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
 
         public event Action<Employee> LoggedIn;
-
+        public event Action RegisterButtonClick;
         private IUnitOfWork _unitOfWork;
 
         public EmployeeLoginViewModel(IUnitOfWork unitOfWork)
@@ -27,11 +29,17 @@ namespace CrmSystem.WPF.ViewModels
             _unitOfWork = unitOfWork;
 
             LoginCommand = new RelayCommand(Login);
+            RegisterCommand = new RelayCommand(RegisterClick);
+        }
+
+        private void RegisterClick()
+        {
+            RegisterButtonClick?.Invoke();
         }
 
         private void Login()
         {
-            var state = new EmployeeLogin(_unitOfWork.Employees).Login(Email, Password, out Employee employee);
+            var state = new EmployeeLogin(_unitOfWork.Employees).Login(Email, new Sha256Hash().CreateHash(Password), out Employee employee);
 
             if (state == LoginStateOption.WrongEmail)
             {

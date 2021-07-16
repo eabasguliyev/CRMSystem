@@ -4,8 +4,12 @@
              xmlns:local="clr-namespace:CrmSystem.WPF"
              xmlns:viewModels="clr-namespace:CrmSystem.WPF.ViewModels"
              xmlns:views="clr-namespace:CrmSystem.WPF.Views"
+             xmlns:converters="clr-namespace:CrmSystem.WPF.Converters"
              StartupUri="Views/MainWindowView.xaml">
     <Application.Resources>
+        <converters:RoleOptionConverter x:Key="RoleOptionConverter"/>
+        <converters:ProfileOptionConverter x:Key="ProfileOptionConverter"/>
+
         <!-- Mapping viewModels to views -->
 
         <DataTemplate DataType="{x:Type viewModels:EmployeeLoginViewModel}">
@@ -22,6 +26,26 @@
 
         <DataTemplate DataType="{x:Type viewModels:AddEditContactViewModel}">
             <views:AddEditContactView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
+            <views:SettingsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:EmployeeRegisterViewModel}">
+            <views:EmployeeRegisterView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:CompanySetupViewModel}">
+            <views:CompanySetupView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:EmployeesViewModel}">
+            <views:EmployeesView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:AddEmployeeViewModel}">
+            <views:AddEmployeeView/>
         </DataTemplate>
     </Application.Resources>
 </Application>

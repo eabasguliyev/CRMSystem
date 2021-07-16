@@ -11,4 +11,9 @@
     <ProjectReference Include="..\CrmSystem.EntityFramework\CrmSystem.EntityFramework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Services\" />
+    <Folder Include="Converters\" />
+  </ItemGroup>
+
 </Project>

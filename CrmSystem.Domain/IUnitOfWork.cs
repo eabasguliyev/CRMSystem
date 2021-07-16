@@ -13,6 +13,8 @@ namespace CrmSystem.Domain
         IRepository<Product> Products { get; }
         IRepository<Task> Tasks { get; }
         IRepository<LeadSource> LeadSources { get; }
+        IRepository<Company> Companies { get; }
+        IRequestedEmployeeRepository RequestedEmployees { get; }
 
 
         //public void ExplicitLoading<TEntity2>(Expression<Func<TEntity2, bool>> predicate) where TEntity2 : class;

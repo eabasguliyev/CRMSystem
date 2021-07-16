@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using CrmSystem.Domain;
@@ -22,6 +23,8 @@ namespace CrmSystem.WPF.ViewModels
         private Employee _selectedOwner;
         public bool EditMode { get; set; }
 
+        public Employee LoggedUser => App.LoggedUser;
+
         public Contact Contact
         {
             get => _contact;
@@ -43,7 +46,6 @@ namespace CrmSystem.WPF.ViewModels
         public ICommand SaveClickCommand { get; set; }
         public ICommand SaveAndNewClickCommand { get; set; }
         public ICommand CancelClickCommand { get; set; }
-        public Employee Employee { get; set; }
 
         public event Action SaveOrCancelClicked;
 
@@ -85,7 +87,7 @@ namespace CrmSystem.WPF.ViewModels
 
         public void LoadEmployees()
         {
-            Employees = new ObservableCollection<Employee>(_unitOfWork.Employees.GetAll());
+            Employees = new ObservableCollection<Employee>(_unitOfWork.Employees.Find(e => e.Company.Id == App.Company.Id).Select(e => e as Employee));
         }
 
         public void LoadLeadSources()
@@ -129,7 +131,7 @@ namespace CrmSystem.WPF.ViewModels
             {
                 Contact.ModifiedBy = new RecordDetail()
                 {
-                    Employee = Employee,
+                    Employee = App.LoggedUser,
                     RecordDate = DateTime.Now
                 };
             }
@@ -138,7 +140,7 @@ namespace CrmSystem.WPF.ViewModels
 
                 Contact.CreatedBy = new RecordDetail()
                 {
-                    Employee = Employee,
+                    Employee = App.LoggedUser,
                     RecordDate = DateTime.Now
                 };
 

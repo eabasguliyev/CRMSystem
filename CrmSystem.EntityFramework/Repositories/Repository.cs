@@ -30,12 +30,12 @@ namespace CrmSystem.EntityFramework.Repositories
             return Context.Set<TEntity>();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return _entities.Where(predicate);
         }
 
-        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
+        public virtual TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
             return _entities.SingleOrDefault(predicate);
         }

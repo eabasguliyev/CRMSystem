@@ -6,5 +6,6 @@
         public string Country { get; set; }
         public string Category { get; set; }
         public float Price { get; set; }
+        public Company Company { get; set; }
     }
 }

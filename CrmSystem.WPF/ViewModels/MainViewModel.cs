@@ -12,6 +12,10 @@ namespace CrmSystem.WPF.ViewModels
 
         private ContactsViewModel _contactsViewModel;
         private AddEditContactViewModel _addEditContactViewModel;
+        private SettingsViewModel _settingsViewModel;
+        private CompanySetupViewModel _companySetupViewModel;
+        private EmployeesViewModel _employeesViewModel;
+
 
         private IUnitOfWork _unitOfWork;
 
@@ -23,9 +27,34 @@ namespace CrmSystem.WPF.ViewModels
 
             _contactsViewModel = new ContactsViewModel(_unitOfWork);
             _contactsViewModel.CreateContactClicked += NavToAddEditContact;
+            
             _addEditContactViewModel = new AddEditContactViewModel(_unitOfWork);
             _addEditContactViewModel.SaveOrCancelClicked += NavToContacts;
+
+            _settingsViewModel = new SettingsViewModel();
+            _settingsViewModel.UsersButtonClicked += NavToEmployeesView;
+            _companySetupViewModel = new CompanySetupViewModel(_unitOfWork);
+            _companySetupViewModel.InitialSetupCompleted += OnInitialSetupCompleted;
+
+            _employeesViewModel = new EmployeesViewModel(_unitOfWork);
+
             ContactsClickCommand = new RelayCommand(NavToContacts);
+            SettingsClickCommand = new RelayCommand(NavToSettings);
+        }
+
+        private void NavToEmployeesView()
+        {
+            CurrentViewModel = _employeesViewModel;
+        }
+
+        private void OnInitialSetupCompleted()
+        {
+            CurrentViewModel = null;
+        }
+
+        private void NavToSettings()
+        {
+            CurrentViewModel = _settingsViewModel;
         }
 
         private void NavToAddEditContact(object? sender, AddEditContactEventArgs e)
@@ -34,14 +63,11 @@ namespace CrmSystem.WPF.ViewModels
 
             _addEditContactViewModel.Contact = e.Contact;
 
-            _addEditContactViewModel.Employee = Employee;
 
             CurrentViewModel = _addEditContactViewModel;
         }
-
-        public Employee Employee { get; set; }
-
         public ICommand ContactsClickCommand { get; set; }
+        public ICommand SettingsClickCommand { get; set; }
 
         public ObservableObject CurrentViewModel
         {
@@ -51,6 +77,14 @@ namespace CrmSystem.WPF.ViewModels
         private void NavToContacts()
         {
             CurrentViewModel = _contactsViewModel;
+        }
+
+        public void InitialSetup()
+        {
+            if (App.Company == null)
+            {
+                CurrentViewModel = _companySetupViewModel;
+            }
         }
     }
 }

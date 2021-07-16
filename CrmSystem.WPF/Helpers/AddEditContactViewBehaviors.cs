@@ -19,7 +19,7 @@ namespace CrmSystem.WPF.Helpers
 
         // Using a DependencyProperty as the backing store for LoadMethodName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EmployeesLoadMethodNameProperty =
-            DependencyProperty.RegisterAttached("EmployeesLoadMethodName", typeof(string), typeof(AddEditContactViewBehaviors), new PropertyMetadata(null, OnLoadMethodNameChanged));
+            DependencyProperty.RegisterAttached("EmployeesLoadMethodName", typeof(string), typeof(AddEditContactViewBehaviors), new PropertyMetadata(null, MvvmBehaviors.OnLoadMethodNameChanged));
 
 
 
@@ -36,7 +36,7 @@ namespace CrmSystem.WPF.Helpers
 
         // Using a DependencyProperty as the backing store for LeadSourcesLoadMethodName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LeadSouLeadSourcesLoadMethodNameProperty =
-            DependencyProperty.RegisterAttached("LeadSourcesLoadMethodName", typeof(string), typeof(AddEditContactViewBehaviors), new PropertyMetadata(null, OnLoadMethodNameChanged));
+            DependencyProperty.RegisterAttached("LeadSourcesLoadMethodName", typeof(string), typeof(AddEditContactViewBehaviors), new PropertyMetadata(null, MvvmBehaviors.OnLoadMethodNameChanged));
 
 
 
@@ -53,28 +53,7 @@ namespace CrmSystem.WPF.Helpers
 
         // Using a DependencyProperty as the backing store for InitialMethodName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty InitialMethodNameProperty =
-            DependencyProperty.RegisterAttached("InitialMethodName", typeof(string), typeof(AddEditContactViewBehaviors), new PropertyMetadata(null, OnLoadMethodNameChanged));
+            DependencyProperty.RegisterAttached("InitialMethodName", typeof(string), typeof(AddEditContactViewBehaviors), new PropertyMetadata(null, MvvmBehaviors.OnLoadMethodNameChanged));
 
-
-        private static void OnLoadMethodNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if(!(d is FrameworkElement uiElement))
-                return;
-
-            uiElement.Loaded += (sender, args) =>
-            {
-                var viewModel = uiElement.DataContext;
-
-                if (viewModel == null)
-                    return;
-
-                var methodInfo = viewModel.GetType().GetMethod(e.NewValue.ToString());
-
-                if (methodInfo == null)
-                    return;
-
-                methodInfo.Invoke(viewModel, null);
-            };
-        }
     }
 }

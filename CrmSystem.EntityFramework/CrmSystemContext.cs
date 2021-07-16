@@ -1,10 +1,13 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Annotations;
 using CrmSystem.Domain.Models;
 
 namespace CrmSystem.EntityFramework
 {
     public class CrmSystemContext:DbContext
     {
+        public DbSet<Company> Companies { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Contract> Contracts {get; set; }
         public DbSet<Employee> Employees {get; set; }
@@ -13,6 +16,8 @@ namespace CrmSystem.EntityFramework
         public DbSet<ContactNote> ContactNotes { get; set; }
         public DbSet<TaskNote> TaskNotes { get; set; }
         public DbSet<LeadSource> LeadSources { get; set; }
+        public DbSet<RequestedEmployee> RequestedEmployees { get; set; }
+
         public CrmSystemContext():base(Properties.Resources.ResourceManager.GetString("ConnectionString"))
         {
             base.Configuration.LazyLoadingEnabled = false;
@@ -26,6 +31,17 @@ namespace CrmSystem.EntityFramework
             modelBuilder.Entity<Employee>().Ignore(e => e.FullName);
 
             //modelBuilder.Entity<Contact>().Property(c => c.Birthdate).IsOptional();
+
+            //modelBuilder.Entity<Employee>().Property(p => p.Email)
+            //    .HasColumnAnnotation("Index", new IndexAnnotation(new[] {
+            //            new IndexAttribute("Index") { IsUnique = true }
+            //        }
+            //    ));
+            //modelBuilder.Entity<Contact>().Property(p => p.Email)
+            //    .HasColumnAnnotation("Index", new IndexAnnotation(new[] {
+            //            new IndexAttribute("Index") { IsUnique = true }
+            //        }
+            //    ));
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -19,10 +19,12 @@ namespace CrmSystem.EntityFramework
 
             Contacts = new ContactRepository(_context);
             Employees = new EmployeeRepository(_context);
-            Contacts = new ContactRepository(_context);
             Products = new Repository<Product>(_context);
             Tasks = new Repository<Task>(_context);
             LeadSources = new Repository<LeadSource>(_context);
+            Contracts = new ContractRepository(_context);
+            Companies = new Repository<Company>(_context);
+            RequestedEmployees = new RequestedEmployeeRepository(_context);
         }
 
         public void Dispose()
@@ -36,6 +38,8 @@ namespace CrmSystem.EntityFramework
         public IRepository<Product> Products { get;}
         public IRepository<Task> Tasks { get; }
         public IRepository<LeadSource> LeadSources { get; }
+        public IRepository<Company> Companies { get; }
+        public IRequestedEmployeeRepository RequestedEmployees { get; }
 
         //public void ExplicitLoading<TEntity2>(Expression<Func<TEntity2, bool>> predicate) where TEntity2 : class
         //{
@@ -44,10 +48,6 @@ namespace CrmSystem.EntityFramework
         
         public void Save()
         {
-            foreach (var item in _context.ChangeTracker.Entries<Contact>())
-            {
-                Console.WriteLine(item.State);
-            }
             _context.SaveChanges();
         }
     }
