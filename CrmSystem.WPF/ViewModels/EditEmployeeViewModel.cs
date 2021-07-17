@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Documents;
 using System.Windows.Input;
 using CrmSystem.Domain;
 using CrmSystem.Domain.Models;
@@ -9,38 +8,13 @@ using CrmSystem.WPF.Helpers;
 
 namespace CrmSystem.WPF.ViewModels
 {
-    public class AddEditEmployeeEventArgs : EventArgs
-    {
-        public bool IsChanged { get; set; }
-    }
-    public class AddEmployeeViewModel:ObservableObject
+    public class EditEmployeeViewModel:ObservableObject
     {
         private readonly IUnitOfWork _unitOfWork;
+        private BaseEmployee _employee;
+
         private List<RoleOption> _roles;
         private List<ProfileOption> _profiles;
-
-
-        public RequestedEmployee NewEmployee { get; set; }
-        public AddEmployeeViewModel(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-
-            NewEmployee = new RequestedEmployee();
-
-            SaveButtonClickCommand = new RelayCommand(SaveButton);
-            CancelButtonClickCommand= new RelayCommand(CancelButton);
-        }
-
-        private void CancelButton()
-        {
-            AddUserOrCancelOperation?.Invoke(this, new AddEditEmployeeEventArgs()
-            {
-                IsChanged = false
-            });
-        }
-
-        public event EventHandler<AddEditEmployeeEventArgs> AddUserOrCancelOperation;
-
         public List<RoleOption> Roles
         {
             get => _roles;
@@ -52,11 +26,23 @@ namespace CrmSystem.WPF.ViewModels
             get => _profiles;
             set => base.SetProperty(ref _profiles, value);
         }
+        public EditEmployeeViewModel(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
 
+            CancelButtonClickCommand = new RelayCommand(CancelButton);
+            SaveButtonClickCommand = new RelayCommand(SaveButton);
+        }
+        private void CancelButton()
+        {
+            AddUserOrCancelOperation?.Invoke(this, new AddEditEmployeeEventArgs()
+            {
+                IsChanged = false
+            });
+        }
+        public event EventHandler<AddEditEmployeeEventArgs> AddUserOrCancelOperation;
         private void SaveButton()
         {
-            NewEmployee.Company = App.Company;
-            _unitOfWork.RequestedEmployees.Add(NewEmployee);
             _unitOfWork.Save();
 
             AddUserOrCancelOperation?.Invoke(this, new AddEditEmployeeEventArgs()
@@ -64,11 +50,16 @@ namespace CrmSystem.WPF.ViewModels
                 IsChanged = true
             });
         }
+        
 
-        public ICommand SaveButtonClickCommand { get; set; }
+        public BaseEmployee Employee
+        {
+            get => _employee;
+            set => base.SetProperty(ref _employee, value);
+        }
+
         public ICommand CancelButtonClickCommand { get; set; }
-
-
+        public ICommand SaveButtonClickCommand { get; set; }
         public void LoadProfiles()
         {
             Profiles = Enum.GetValues(typeof(ProfileOption)).Cast<ProfileOption>()

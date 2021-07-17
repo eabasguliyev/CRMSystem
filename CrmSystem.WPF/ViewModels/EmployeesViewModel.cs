@@ -16,6 +16,7 @@ namespace CrmSystem.WPF.ViewModels
 
         private AddEmployeeViewModel _addUserViewModel;
         private EmployeeInfoViewModel _employeeInfoViewModel;
+        private EditEmployeeViewModel _editEmployeeViewModel;
 
         private ObservableObject _currentViewModel;
 
@@ -56,15 +57,25 @@ namespace CrmSystem.WPF.ViewModels
             _addUserViewModel.AddUserOrCancelOperation += NavToEmployeesView;
 
             _employeeInfoViewModel = new EmployeeInfoViewModel();
+            _employeeInfoViewModel.EditButtonClicked += NavToEditEmployeeView;
+
+            _editEmployeeViewModel = new EditEmployeeViewModel(unitOfWork);
+            _editEmployeeViewModel.AddUserOrCancelOperation += NavToEmployeesView;
 
             AddUserClickCommand = new RelayCommand(AddUserClick);
         }
 
-        private void NavToEmployeesView(object sender, AddEmployeeEventArgs e)
+        private void NavToEditEmployeeView(object? sender, EmployeInfoEventArgs e)
+        {
+            _editEmployeeViewModel.Employee = e.Employee;
+            CurrentViewModel = _editEmployeeViewModel;
+        }
+
+        private void NavToEmployeesView(object sender, AddEditEmployeeEventArgs e)
         {
             CurrentViewModel = null;
 
-            if(e.Added)
+            if(e.IsChanged)
                 LoadEmployees();
         }
 

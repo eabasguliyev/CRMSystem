@@ -51,5 +51,9 @@
         <DataTemplate DataType="{x:Type viewModels:EmployeeInfoViewModel}">
             <views:EmployeeInfoView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:EditEmployeeViewModel}">
+            <views:EditEmployeeView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
