@@ -17,5 +17,16 @@ namespace CrmSystem.Domain.Models
         public List<ContactNote> Notes { get; set; }
         public List<Task> Tasks { get; set; }
         public List<Contract> Contracts { get; set; }
+
+        public void Update(Contact user)
+        {
+            Title = user.Title;
+            LeadSource = user.LeadSource;
+            Owner = user.Owner;
+            Description = user.Description;
+            ModifiedBy = user.ModifiedBy;
+
+            base.Update(user);
+        }
     }
 }

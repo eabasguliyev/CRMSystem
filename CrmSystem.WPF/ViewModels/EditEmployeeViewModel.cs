@@ -5,6 +5,7 @@ using System.Windows.Input;
 using CrmSystem.Domain;
 using CrmSystem.Domain.Models;
 using CrmSystem.WPF.Helpers;
+using CrmSystem.WPF.Models;
 
 namespace CrmSystem.WPF.ViewModels
 {
@@ -15,6 +16,8 @@ namespace CrmSystem.WPF.ViewModels
 
         private List<RoleOption> _roles;
         private List<ProfileOption> _profiles;
+        private BaseEmployee _editableEmployee;
+
         public List<RoleOption> Roles
         {
             get => _roles;
@@ -43,6 +46,7 @@ namespace CrmSystem.WPF.ViewModels
         public event EventHandler<AddEditEmployeeEventArgs> AddUserOrCancelOperation;
         private void SaveButton()
         {
+            Employee.Update(EditableEmployee);
             _unitOfWork.Save();
 
             AddUserOrCancelOperation?.Invoke(this, new AddEditEmployeeEventArgs()
@@ -50,16 +54,32 @@ namespace CrmSystem.WPF.ViewModels
                 IsChanged = true
             });
         }
-        
 
         public BaseEmployee Employee
         {
             get => _employee;
-            set => base.SetProperty(ref _employee, value);
+            set
+            {
+                _employee = value;
+
+                this.CopyEmployee(_employee);
+            }
+        }
+
+        public BaseEmployee EditableEmployee
+        {
+            get => _editableEmployee;
+            set => base.SetProperty(ref _editableEmployee, value);
         }
 
         public ICommand CancelButtonClickCommand { get; set; }
         public ICommand SaveButtonClickCommand { get; set; }
+
+        private void CopyEmployee(BaseEmployee employee)
+        {
+            EditableEmployee = employee.Clone() as BaseEmployee;
+        }
+        
         public void LoadProfiles()
         {
             Profiles = Enum.GetValues(typeof(ProfileOption)).Cast<ProfileOption>()

@@ -43,7 +43,7 @@
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
 
-            <Grid DataContext="{Binding Contact}">
+            <Grid DataContext="{Binding EditableContact}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>

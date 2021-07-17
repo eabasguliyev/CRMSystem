@@ -56,9 +56,6 @@ namespace CrmSystem.WPF.ViewModels
             {
                 EditMode = false,
                 Contact = new Contact()
-                {
-                    AddressInfo = new AddressInformation()
-                }
             });
         }
 

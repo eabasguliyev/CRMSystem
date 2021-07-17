@@ -1,4 +1,6 @@
-﻿namespace CrmSystem.Domain.Models
+﻿using System;
+
+namespace CrmSystem.Domain.Models
 {
     public enum RoleOption
     {
@@ -16,5 +18,13 @@
     {
         public RoleOption Role { get; set; }
         public ProfileOption Profile { get; set; }
+
+        public void Update(BaseEmployee employee)
+        {
+            Role = employee.Role;
+            Profile = employee.Profile;
+
+            base.Update(employee);
+        }
     }
 }

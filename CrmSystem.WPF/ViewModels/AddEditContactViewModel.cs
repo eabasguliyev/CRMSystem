@@ -21,6 +21,7 @@ namespace CrmSystem.WPF.ViewModels
         private ObservableCollection<LeadSource> _leadSources;
         private LeadSource _selectedLeadSource;
         private Employee _selectedOwner;
+        private Contact _editableContact;
         public bool EditMode { get; set; }
 
         public Employee LoggedUser => App.LoggedUser;
@@ -28,7 +29,18 @@ namespace CrmSystem.WPF.ViewModels
         public Contact Contact
         {
             get => _contact;
-            set => base.SetProperty(ref _contact, value);
+            set
+            {
+                _contact = value;
+
+                EditableContact = _contact.Clone() as Contact;
+            }
+        }
+
+        public Contact EditableContact
+        {
+            get => _editableContact;
+            set => base.SetProperty(ref _editableContact, value);
         }
 
         public ObservableCollection<Employee> Employees
@@ -79,7 +91,7 @@ namespace CrmSystem.WPF.ViewModels
 
         private void ClearUserInputs()
         {
-            Contact = new Contact()
+            EditableContact = new Contact()
             {
                 AddressInfo = new AddressInformation()
             };
@@ -106,6 +118,8 @@ namespace CrmSystem.WPF.ViewModels
         {
             PrepareContact();
 
+            Contact.Update(EditableContact);
+
             if (!EditMode)
                 _unitOfWork.Contacts.Add(Contact);
 
@@ -122,14 +136,14 @@ namespace CrmSystem.WPF.ViewModels
         private void PrepareContact()
         {
             if (SelectedOwner != null)
-                Contact.Owner = SelectedOwner;
+                EditableContact.Owner = SelectedOwner;
 
             if (SelectedLeadSource != null)
-                Contact.LeadSource = SelectedLeadSource;
+                EditableContact.LeadSource = SelectedLeadSource;
 
             if (EditMode)
             {
-                Contact.ModifiedBy = new RecordDetail()
+                EditableContact.ModifiedBy = new RecordDetail()
                 {
                     Employee = App.LoggedUser,
                     RecordDate = DateTime.Now
@@ -138,7 +152,7 @@ namespace CrmSystem.WPF.ViewModels
             else
             {
 
-                Contact.CreatedBy = new RecordDetail()
+                EditableContact.CreatedBy = new RecordDetail()
                 {
                     Employee = App.LoggedUser,
                     RecordDate = DateTime.Now
@@ -149,11 +163,11 @@ namespace CrmSystem.WPF.ViewModels
 
         public void InitialConfiguration()
         {
-            if (Contact.Owner != null)
-                SelectedOwner = Contact.Owner;
+            if (EditableContact.Owner != null)
+                SelectedOwner = EditableContact.Owner;
 
-            if (Contact.LeadSource != null)
-                SelectedLeadSource = Contact.LeadSource;
+            if (EditableContact.LeadSource != null)
+                SelectedLeadSource = EditableContact.LeadSource;
         }
     }
 }
