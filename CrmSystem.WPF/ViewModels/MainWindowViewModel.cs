@@ -38,6 +38,7 @@ namespace CrmSystem.WPF.ViewModels
             _employeeRegisterViewModel.LoadLoginView += NavToLoginView;
 
             _mainViewModel = new MainViewModel(_unitOfWork);
+            _mainViewModel.LogoutEvent += NavToLoginView;
 
             CurrentViewModel = _employeeLoginViewModel;
         }

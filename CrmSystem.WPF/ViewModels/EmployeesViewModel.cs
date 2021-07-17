@@ -11,6 +11,7 @@ namespace CrmSystem.WPF.ViewModels
 {
     public class EmployeesViewModel:ObservableObject
     {
+        private bool IsFirstLoad = true;
         private IUnitOfWork _unitOfWork;
         private ObservableCollection<BaseEmployee> _employees;
 
@@ -73,7 +74,7 @@ namespace CrmSystem.WPF.ViewModels
 
         private void NavToEmployeesView(object sender, AddEditEmployeeEventArgs e)
         {
-            CurrentViewModel = null;
+            CurrentViewModel = _employeeInfoViewModel;
 
             if(e.IsChanged)
                 LoadEmployees();
@@ -93,6 +94,15 @@ namespace CrmSystem.WPF.ViewModels
             employees.AddRange(_unitOfWork.RequestedEmployees.Find(e => e.Company.Id == App.Company.Id));
 
             Employees = new ObservableCollection<BaseEmployee>(employees);
+        }
+
+
+        public void ViewLoad()
+        {
+            if (!IsFirstLoad) return;
+
+            SelectedEmployee = App.LoggedUser;
+            IsFirstLoad = false;
         }
     }
 }

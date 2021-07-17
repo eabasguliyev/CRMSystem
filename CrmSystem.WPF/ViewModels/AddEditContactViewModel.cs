@@ -24,8 +24,6 @@ namespace CrmSystem.WPF.ViewModels
         private Contact _editableContact;
         public bool EditMode { get; set; }
 
-        public Employee LoggedUser => App.LoggedUser;
-
         public Contact Contact
         {
             get => _contact;

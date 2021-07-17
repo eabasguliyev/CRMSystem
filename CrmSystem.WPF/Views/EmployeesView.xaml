@@ -8,7 +8,8 @@
              xmlns:converters="clr-namespace:CrmSystem.WPF.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             helpers:EmployeesViewBehaviors.LoadEmployeesMethodName="LoadEmployees">
+             helpers:EmployeesViewBehaviors.LoadEmployeesMethodName="LoadEmployees"
+             helpers:EmployeesViewBehaviors.ViewLoadMethodName="ViewLoad">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
