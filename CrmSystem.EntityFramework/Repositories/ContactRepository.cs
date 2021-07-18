@@ -35,7 +35,7 @@ namespace CrmSystem.EntityFramework.Repositories
             return contact.Notes;
         }
 
-        public IEnumerable<Task> GetOpenTasks(int id)
+        public IEnumerable<ContactTask> GetOpenTasks(int id)
         {
             var contact = base.Get(id);
 
@@ -47,7 +47,7 @@ namespace CrmSystem.EntityFramework.Repositories
             return contact.Tasks;
         }
 
-        public IEnumerable<Task> GetClosedTasks(int id)
+        public IEnumerable<ContactTask> GetClosedTasks(int id)
         {
             var contact = base.Get(id);
 

@@ -12,7 +12,7 @@ namespace CrmSystem.EntityFramework
         public DbSet<Contract> Contracts {get; set; }
         public DbSet<Employee> Employees {get; set; }
         public DbSet<Product> Products {get; set; }
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<ContactTask> Tasks { get; set; }
         public DbSet<ContactNote> ContactNotes { get; set; }
         public DbSet<TaskNote> TaskNotes { get; set; }
         public DbSet<LeadSource> LeadSources { get; set; }

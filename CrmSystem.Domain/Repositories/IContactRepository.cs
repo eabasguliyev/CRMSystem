@@ -8,8 +8,8 @@ namespace CrmSystem.Domain.Repositories
     {
         IEnumerable<Note> GetNotes(int id);
 
-        IEnumerable<Task> GetOpenTasks(int id);
-        IEnumerable<Task> GetClosedTasks(int id);
+        IEnumerable<ContactTask> GetOpenTasks(int id);
+        IEnumerable<ContactTask> GetClosedTasks(int id);
         IEnumerable<Contract> GetContracts(int id);
     }
 }

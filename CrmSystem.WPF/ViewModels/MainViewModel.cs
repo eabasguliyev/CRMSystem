@@ -15,6 +15,7 @@ namespace CrmSystem.WPF.ViewModels
         private SettingsViewModel _settingsViewModel;
         private CompanySetupViewModel _companySetupViewModel;
         private EmployeesViewModel _employeesViewModel;
+        private TasksViewModel _tasksViewModel;
 
         public Employee LoggedUser => App.LoggedUser;
 
@@ -39,9 +40,17 @@ namespace CrmSystem.WPF.ViewModels
 
             _employeesViewModel = new EmployeesViewModel(_unitOfWork);
 
+            _tasksViewModel = new TasksViewModel();
+
             ContactsClickCommand = new RelayCommand(NavToContacts);
             SettingsClickCommand = new RelayCommand(NavToSettings);
             LogoutClickCommand = new RelayCommand(Logout);
+            TasksClickCommand = new RelayCommand(NavToTasks);
+        }
+
+        private void NavToTasks()
+        {
+            CurrentViewModel = _tasksViewModel;
         }
 
         private void Logout()
@@ -78,6 +87,7 @@ namespace CrmSystem.WPF.ViewModels
         public ICommand ContactsClickCommand { get; set; }
         public ICommand SettingsClickCommand { get; set; }
         public ICommand LogoutClickCommand { get; set; }
+        public ICommand TasksClickCommand { get; set; }
 
         public event Action LogoutEvent;
         public ObservableObject CurrentViewModel

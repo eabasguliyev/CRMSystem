@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 namespace CrmSystem.Domain.Models
 {
-    public class Task:DomainObject
+    public class BaseTask:DomainObject
     {
         public string Subject { get; set; }
         public DateTime DueDate { get; set; }
         public PriorityOption Priority{ get; set; }
-        public int ContactId { get; set; }
-        public Contact Contact { get; set; }
+        
         public Employee Owner { get; set; }
         public RecordDetail CreatedBy { get; set; }
         public RecordDetail ModifiedBy { get; set; }

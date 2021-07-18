@@ -18,4 +18,9 @@ namespace CrmSystem.Domain.Models
     {
         public int ContactId { get; set; }
     }
+
+    public class LeadNote : Note
+    {
+        public int LeadIt { get; set; }
+    }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 
 namespace CrmSystem.Domain.Models
 {
-    public class Contact:User
+    public class Lead : User
     {
         public string Title { get; set; }
         public int? LeadSourceId { get; set; }
@@ -14,11 +12,10 @@ namespace CrmSystem.Domain.Models
         public string Description { get; set; }
         public RecordDetail CreatedBy { get; set; }
         public RecordDetail ModifiedBy { get; set; }
-        public List<ContactNote> Notes { get; set; }
+        public List<LeadNote> Notes { get; set; }
         public List<ContactTask> Tasks { get; set; }
-        public List<Contract> Contracts { get; set; }
 
-        public void Update(Contact user)
+        public void Update(Lead user)
         {
             Title = user.Title;
             LeadSource = user.LeadSource;

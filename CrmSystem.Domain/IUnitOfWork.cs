@@ -11,7 +11,7 @@ namespace CrmSystem.Domain
         IEmployeeRepository Employees { get; }
         IContractRepository Contracts { get; }
         IRepository<Product> Products { get; }
-        IRepository<Task> Tasks { get; }
+        IRepository<ContactTask> ContactTasks { get; }
         IRepository<LeadSource> LeadSources { get; }
         IRepository<Company> Companies { get; }
         IRequestedEmployeeRepository RequestedEmployees { get; }
