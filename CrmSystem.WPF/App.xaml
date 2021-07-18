@@ -59,5 +59,10 @@
         <DataTemplate DataType="{x:Type viewModels:TasksViewModel}">
             <views:TasksView/>
         </DataTemplate>
+
+
+        <DataTemplate DataType="{x:Type viewModels:AddEditTaskViewModel}">
+            <views:AddEditTaskView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

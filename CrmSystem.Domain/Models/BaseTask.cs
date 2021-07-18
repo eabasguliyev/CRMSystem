@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CrmSystem.Domain.Models
 {
-    public class BaseTask:DomainObject
+    public class BaseTask:DomainObject, ICloneable
     {
         public string Subject { get; set; }
         public DateTime DueDate { get; set; }
@@ -15,6 +15,24 @@ namespace CrmSystem.Domain.Models
         public StatusOption Status { get; set; }
         public string Description { get; set; }
         public List<TaskNote> Notes { get; set; }
+
+        public BaseTask()
+        {
+            Notes = new List<TaskNote>();
+        }
+        public object Clone()
+        {
+            return base.MemberwiseClone() as BaseTask;
+        }
+
+        public void Update(BaseTask task)
+        {
+            Subject = task.Subject;
+            DueDate = task.DueDate;
+            Owner = task.Owner;
+            Description = task.Description;
+            ModifiedBy = task.ModifiedBy;
+        }
     }
 
     public enum StatusOption

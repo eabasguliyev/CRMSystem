@@ -39,6 +39,7 @@ namespace CrmSystem.Domain.Models
             Mobile = user.Mobile;
             Birthdate = user.Birthdate;
             CreationDate = user.CreationDate;
+            Company = user.Company;
             AddressInfo?.Update(user.AddressInfo);
         }
     }

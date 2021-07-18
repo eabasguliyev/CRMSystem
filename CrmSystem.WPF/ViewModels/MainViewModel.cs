@@ -16,6 +16,7 @@ namespace CrmSystem.WPF.ViewModels
         private CompanySetupViewModel _companySetupViewModel;
         private EmployeesViewModel _employeesViewModel;
         private TasksViewModel _tasksViewModel;
+        private AddEditTaskViewModel _addEditTaskViewModel;
 
         public Employee LoggedUser => App.LoggedUser;
 
@@ -40,12 +41,23 @@ namespace CrmSystem.WPF.ViewModels
 
             _employeesViewModel = new EmployeesViewModel(_unitOfWork);
 
-            _tasksViewModel = new TasksViewModel();
+            _tasksViewModel = new TasksViewModel(_unitOfWork);
+            _tasksViewModel.CreateTasksClicked += NavToAddEditTask;
+
+            _addEditTaskViewModel = new AddEditTaskViewModel(_unitOfWork);
 
             ContactsClickCommand = new RelayCommand(NavToContacts);
             SettingsClickCommand = new RelayCommand(NavToSettings);
             LogoutClickCommand = new RelayCommand(Logout);
             TasksClickCommand = new RelayCommand(NavToTasks);
+        }
+
+        private void NavToAddEditTask(object? sender, AddEditTaskEventArgs e)
+        {
+            _addEditTaskViewModel.Task = e.Task;
+            _addEditTaskViewModel.EditMode = e.EditMode;
+
+            CurrentViewModel = _addEditTaskViewModel;
         }
 
         private void NavToTasks()

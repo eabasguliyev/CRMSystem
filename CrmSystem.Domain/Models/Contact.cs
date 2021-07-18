@@ -24,6 +24,7 @@ namespace CrmSystem.Domain.Models
             LeadSource = user.LeadSource;
             Owner = user.Owner;
             Description = user.Description;
+            CreatedBy = user.CreatedBy;
             ModifiedBy = user.ModifiedBy;
 
             base.Update(user);

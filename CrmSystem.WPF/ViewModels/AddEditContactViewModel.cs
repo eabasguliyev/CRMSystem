@@ -139,6 +139,9 @@ namespace CrmSystem.WPF.ViewModels
             if (SelectedLeadSource != null)
                 EditableContact.LeadSource = SelectedLeadSource;
 
+            if (EditableContact.Company == null)
+                EditableContact.Company = App.Company;
+
             if (EditMode)
             {
                 EditableContact.ModifiedBy = new RecordDetail()
