@@ -65,6 +65,18 @@ namespace CrmSystem.WPF.Helpers
             DependencyProperty.RegisterAttached("LoadContactsMethodName", typeof(string), typeof(AddEditTaskViewBehaviors), new PropertyMetadata(null, MvvmBehaviors.OnLoadMethodNameChanged));
 
 
+        public static string GetInitialMethodName(DependencyObject obj)
+        {
+            return (string)obj.GetValue(InitialMethodNameProperty);
+        }
 
+        public static void SetInitialMethodName(DependencyObject obj, string value)
+        {
+            obj.SetValue(InitialMethodNameProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for InitialMethodName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InitialMethodNameProperty =
+            DependencyProperty.RegisterAttached("InitialMethodName", typeof(string), typeof(AddEditTaskViewBehaviors), new PropertyMetadata(null, MvvmBehaviors.OnLoadMethodNameChanged));
     }
 }

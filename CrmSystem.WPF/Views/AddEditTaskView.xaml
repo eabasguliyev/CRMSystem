@@ -10,7 +10,8 @@
              helper:AddEditTaskViewBehaviors.EmployeesLoadMethodName="LoadEmployees"
              helper:AddEditTaskViewBehaviors.LoadStatusesMethodName="LoadStatuses"
              helper:AddEditTaskViewBehaviors.LoadPrioritiesMethodName="LoadPriorities"
-             helper:AddEditTaskViewBehaviors.LoadContactsMethodName="LoadContacts">
+             helper:AddEditTaskViewBehaviors.LoadContactsMethodName="LoadContacts"
+             helper:AddEditTaskViewBehaviors.InitialMethodName="InitialConfiguration">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

@@ -26,6 +26,7 @@ namespace CrmSystem.WPF.ViewModels
         {
             _unitOfWork = unitOfWork;
             CreateTaskClickCommand = new RelayCommand(CreateTaskClick);
+            EditContactClickCommand = new RelayCommand(EditTaskClicked);
         }
         
         private void CreateTaskClick()
@@ -53,6 +54,8 @@ namespace CrmSystem.WPF.ViewModels
         }
 
         public ICommand CreateTaskClickCommand { get; set; }
+        public ICommand EditContactClickCommand { get; set; }
+        public ICommand ContactInfoClickCommand { get; set; }
 
         public event EventHandler<AddEditTaskEventArgs> CreateTasksClicked;
 

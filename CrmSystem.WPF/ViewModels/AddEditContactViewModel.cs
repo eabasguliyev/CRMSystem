@@ -166,6 +166,10 @@ namespace CrmSystem.WPF.ViewModels
         {
             if (EditableContact.Owner != null)
                 SelectedOwner = EditableContact.Owner;
+            else
+            {
+                SelectedOwner = App.LoggedUser;
+            }
 
             if (EditableContact.LeadSource != null)
                 SelectedLeadSource = EditableContact.LeadSource;

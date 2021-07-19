@@ -153,6 +153,10 @@ namespace CrmSystem.WPF.ViewModels
         {
             if (EditableTask.Owner != null)
                 SelectedOwner = EditableTask.Owner;
+            else
+            {
+                SelectedOwner = App.LoggedUser;
+            }
         }
 
         public void LoadStatuses()
