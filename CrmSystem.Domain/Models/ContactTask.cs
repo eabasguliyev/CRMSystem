@@ -5,9 +5,9 @@
         public int ContactId { get; set; }
         public Contact Contact { get; set; }
 
-        public void Update(BaseTask task)
+        public void Update(ContactTask task)
         {
-            Contact = (task as ContactTask).Contact;
+            Contact = task.Contact;
             //ContactId = (task as ContactTask).ContactId;
             base.Update(task);
         }

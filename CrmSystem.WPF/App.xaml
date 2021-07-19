@@ -9,6 +9,8 @@
     <Application.Resources>
         <converters:RoleOptionConverter x:Key="RoleOptionConverter"/>
         <converters:ProfileOptionConverter x:Key="ProfileOptionConverter"/>
+        <converters:StatusOptionConverter x:Key="StatusOptionConverter"/>
+        <converters:PriorityOptionConverter x:Key="PriorityOptionConverter"/>
 
         <!-- Mapping viewModels to views -->
 

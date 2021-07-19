@@ -45,6 +45,7 @@ namespace CrmSystem.WPF.ViewModels
             _tasksViewModel.CreateTasksClicked += NavToAddEditTask;
 
             _addEditTaskViewModel = new AddEditTaskViewModel(_unitOfWork);
+            _addEditTaskViewModel.SaveOrCancelClicked += NavToTasks;
 
             ContactsClickCommand = new RelayCommand(NavToContacts);
             SettingsClickCommand = new RelayCommand(NavToSettings);

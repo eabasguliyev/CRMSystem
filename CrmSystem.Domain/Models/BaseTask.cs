@@ -31,6 +31,9 @@ namespace CrmSystem.Domain.Models
             DueDate = task.DueDate;
             Owner = task.Owner;
             Description = task.Description;
+            CreatedBy = task.CreatedBy;
+            Status = task.Status;
+            Priority = task.Priority;
             ModifiedBy = task.ModifiedBy;
         }
     }

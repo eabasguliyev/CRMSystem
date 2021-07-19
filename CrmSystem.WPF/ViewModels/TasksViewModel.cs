@@ -20,6 +20,7 @@ namespace CrmSystem.WPF.ViewModels
     {
         private readonly IUnitOfWork _unitOfWork;
         private BaseTask _selectedTask;
+        private ObservableCollection<BaseTask> _tasks;
 
         public TasksViewModel(IUnitOfWork unitOfWork)
         {
@@ -32,7 +33,7 @@ namespace CrmSystem.WPF.ViewModels
             CreateTasksClicked?.Invoke(this, new AddEditTaskEventArgs()
             {
                 EditMode = false,
-                Task = new BaseTask()
+                Task = new ContactTask()
             });
         }
 
@@ -55,12 +56,16 @@ namespace CrmSystem.WPF.ViewModels
 
         public event EventHandler<AddEditTaskEventArgs> CreateTasksClicked;
 
-        public ObservableCollection<BaseTask> Tasks { get; set; }
+        public ObservableCollection<BaseTask> Tasks
+        {
+            get => _tasks;
+            set => base.SetProperty(ref _tasks, value);
+        }
 
 
         public void LoadTasks()
         {
-            Tasks = new ObservableCollection<BaseTask>(_unitOfWork.ContactTasks.GetAll().ToList());
+            Tasks = new ObservableCollection<BaseTask>(_unitOfWork.ContactTasks.Find(ct => ct.Contact.Company.Id == App.Company.Id).ToList());
         }
     }
 }

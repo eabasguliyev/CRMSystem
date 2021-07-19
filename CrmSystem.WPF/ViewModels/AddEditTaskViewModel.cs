@@ -44,6 +44,8 @@ namespace CrmSystem.WPF.ViewModels
             _unitOfWork = unitOfWork;
 
             SaveClickCommand = new RelayCommand(Save);
+            SaveAndNewClickCommand = new RelayCommand(SaveAndNew);
+            CancelClickCommand = new RelayCommand(Cancel);
         }
 
         public bool EditMode { get; set; }
@@ -106,7 +108,7 @@ namespace CrmSystem.WPF.ViewModels
         {
             PrepareTask();
 
-            Task.Update(EditableTask);
+            (Task as ContactTask).Update(EditableTask as ContactTask);
 
             if (!EditMode)
             {

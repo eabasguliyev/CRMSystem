@@ -41,18 +41,18 @@
                                         Binding="{Binding DueDate}"/>
                     <DataGridTextColumn Header="Status"
                                         Width="*"
-                                        Binding="{Binding Status}"/>
+                                        Binding="{Binding Status, Converter={StaticResource StatusOptionConverter}}"/>
                     <DataGridTextColumn Header="Priority"
                                         Width="*"
-                                        Binding="{Binding Priority}"/>
+                                        Binding="{Binding Priority, Converter={StaticResource PriorityOptionConverter}}"/>
                     <DataGridTextColumn Header="Lead Name"
                                         Width="*"/>
                     <DataGridTextColumn Header="Task Name"
                                         Width="*"
-                                        Binding="{Binding Contact.FullName}"/>
+                                        Binding="{Binding Contact.FullName, Mode=OneWay}"/>
                     <DataGridTextColumn Header="Task Owner"
                                         Width="*"
-                                        Binding="{Binding Owner.FullName}"/>
+                                        Binding="{Binding Owner.FullName, Mode=OneWay}"/>
                     <DataGridTemplateColumn Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

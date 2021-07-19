@@ -20,7 +20,7 @@ namespace CrmSystem.EntityFramework
             Contacts = new ContactRepository(_context);
             Employees = new EmployeeRepository(_context);
             Products = new Repository<Product>(_context);
-            ContactTasks = new Repository<ContactTask>(_context);
+            ContactTasks = new ContactTaskRepository(_context);
             LeadSources = new Repository<LeadSource>(_context);
             Contracts = new ContractRepository(_context);
             Companies = new Repository<Company>(_context);
@@ -36,7 +36,7 @@ namespace CrmSystem.EntityFramework
         public IEmployeeRepository Employees { get; }
         public IContractRepository Contracts { get; }
         public IRepository<Product> Products { get;}
-        public IRepository<ContactTask> ContactTasks { get; }
+        public IContactTaskRepository ContactTasks { get; }
         public IRepository<LeadSource> LeadSources { get; }
         public IRepository<Company> Companies { get; }
         public IRequestedEmployeeRepository RequestedEmployees { get; }
