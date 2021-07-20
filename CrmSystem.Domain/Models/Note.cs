@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace CrmSystem.Domain.Models
 {
@@ -17,10 +18,11 @@ namespace CrmSystem.Domain.Models
     public class ContactNote : Note
     {
         public int ContactId { get; set; }
+        public Contact Contact { get; set; }
     }
 
     public class LeadNote : Note
     {
-        public int LeadIt { get; set; }
+        public int LeadId { get; set; }
     }
 }

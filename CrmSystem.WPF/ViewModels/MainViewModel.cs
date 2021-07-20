@@ -17,6 +17,8 @@ namespace CrmSystem.WPF.ViewModels
         private EmployeesViewModel _employeesViewModel;
         private TasksViewModel _tasksViewModel;
         private AddEditTaskViewModel _addEditTaskViewModel;
+        private ContactInfoViewModel _contactInfoViewModel;
+
 
         public Employee LoggedUser => App.LoggedUser;
 
@@ -30,6 +32,7 @@ namespace CrmSystem.WPF.ViewModels
 
             _contactsViewModel = new ContactsViewModel(_unitOfWork);
             _contactsViewModel.CreateContactClicked += NavToAddEditContact;
+            _contactsViewModel.ContactInfoClicked += NavToContactInfo;
             
             _addEditContactViewModel = new AddEditContactViewModel(_unitOfWork);
             _addEditContactViewModel.SaveOrCancelClicked += NavToContacts;
@@ -47,10 +50,25 @@ namespace CrmSystem.WPF.ViewModels
             _addEditTaskViewModel = new AddEditTaskViewModel(_unitOfWork);
             _addEditTaskViewModel.SaveOrCancelClicked += NavToTasks;
 
+            _contactInfoViewModel = new ContactInfoViewModel(_unitOfWork);
+            _contactInfoViewModel.BackVmRequested += NavToPreviousVm;
+
             ContactsClickCommand = new RelayCommand(NavToContacts);
             SettingsClickCommand = new RelayCommand(NavToSettings);
             LogoutClickCommand = new RelayCommand(Logout);
             TasksClickCommand = new RelayCommand(NavToTasks);
+        }
+
+        private void NavToPreviousVm(ObservableObject vm)
+        {
+            CurrentViewModel = vm;
+        }
+
+        private void NavToContactInfo(Contact contact)
+        {
+            _contactInfoViewModel.Contact = contact;
+            _contactInfoViewModel.BackVM = CurrentViewModel;
+            CurrentViewModel = _contactInfoViewModel;
         }
 
         private void NavToAddEditTask(object? sender, AddEditTaskEventArgs e)

@@ -18,6 +18,12 @@ namespace CrmSystem.Domain.Models
         public List<ContactTask> Tasks { get; set; }
         public List<Contract> Contracts { get; set; }
 
+        public Contact()
+        {
+            Notes = new List<ContactNote>();
+            Tasks = new List<ContactTask>();
+            Contracts = new List<Contract>();
+        }
         public void Update(Contact user)
         {
             Title = user.Title;

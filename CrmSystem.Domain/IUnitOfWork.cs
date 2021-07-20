@@ -16,6 +16,7 @@ namespace CrmSystem.Domain
         IRepository<LeadSource> LeadSources { get; }
         IRepository<Company> Companies { get; }
         IRequestedEmployeeRepository RequestedEmployees { get; }
+        IContactNoteRepository ContactNotes { get; }
 
 
         //public void ExplicitLoading<TEntity2>(Expression<Func<TEntity2, bool>> predicate) where TEntity2 : class;

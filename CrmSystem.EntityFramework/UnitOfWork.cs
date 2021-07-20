@@ -25,6 +25,7 @@ namespace CrmSystem.EntityFramework
             Contracts = new ContractRepository(_context);
             Companies = new Repository<Company>(_context);
             RequestedEmployees = new RequestedEmployeeRepository(_context);
+            ContactNotes = new ContactNoteRepository(_context);
         }
 
         public void Dispose()
@@ -40,6 +41,7 @@ namespace CrmSystem.EntityFramework
         public IRepository<LeadSource> LeadSources { get; }
         public IRepository<Company> Companies { get; }
         public IRequestedEmployeeRepository RequestedEmployees { get; }
+        public IContactNoteRepository ContactNotes { get; }
 
         //public void ExplicitLoading<TEntity2>(Expression<Func<TEntity2, bool>> predicate) where TEntity2 : class
         //{

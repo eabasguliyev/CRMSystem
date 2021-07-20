@@ -36,18 +36,26 @@ namespace CrmSystem.WPF.ViewModels
 
             CreateContactClickCommand = new RelayCommand(CreateContactClick);
             EditContactClickCommand = new RelayCommand(EditContactClick);
+            ContactInfoClickCommand = new RelayCommand(ContactInfoClick);
+        }
+
+        private void ContactInfoClick()
+        {
+            ContactInfoClicked?.Invoke(SelectedContact);
         }
 
         public ICommand CreateContactClickCommand { get; set; }
         public ICommand EditContactClickCommand { get; set; }
+        public ICommand ContactInfoClickCommand { get; set; }
 
         public event EventHandler<AddEditContactEventArgs> CreateContactClicked;
+        public event Action<Contact> ContactInfoClicked;
 
         public Contact SelectedContact { get; set; }
 
         public void LoadContacts()
         {
-            Contacts = new ObservableCollection<Contact>(_unitOfWork.Contacts.GetAll());
+            Contacts = new ObservableCollection<Contact>(_unitOfWork.Contacts.Find(c => c.Company.Id == App.Company.Id));
         }
 
         public void CreateContactClick()

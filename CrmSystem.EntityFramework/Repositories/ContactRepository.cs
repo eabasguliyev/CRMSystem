@@ -80,5 +80,14 @@ namespace CrmSystem.EntityFramework.Repositories
                 .Include(c => c.Owner)
                 .Include(c => c.Company);
         }
+
+        public override IEnumerable<Contact> Find(Expression<Func<Contact, bool>> predicate)
+        {
+            return (CrmSystemContext.Set<Contact>().Include(c => c.Company).Where(predicate)).Include(c => c.CreatedBy)
+                .Include(c => c.CreatedBy.Employee)
+                .Include(c => c.ModifiedBy)
+                .Include(c => c.ModifiedBy.Employee)
+                .Include(c => c.Owner);
+        }
     }
 }

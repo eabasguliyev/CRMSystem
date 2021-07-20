@@ -57,6 +57,11 @@
                                             Content="Edit"
                                             Margin="5"
                                             Command="{Binding DataContext.EditContactClickCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                    <Button Width="100"
+                                            FontSize="18"
+                                            Content="Info"
+                                            Margin="5"
+                                            Command="{Binding DataContext.ContactInfoClickCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
                                 </WrapPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

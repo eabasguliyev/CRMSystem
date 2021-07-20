@@ -62,9 +62,12 @@
             <views:TasksView/>
         </DataTemplate>
 
-
         <DataTemplate DataType="{x:Type viewModels:AddEditTaskViewModel}">
             <views:AddEditTaskView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:ContactInfoViewModel}">
+            <views:ContactInfoView/>
         </DataTemplate>
     </Application.Resources>
 </Application>
