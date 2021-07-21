@@ -69,5 +69,9 @@
         <DataTemplate DataType="{x:Type viewModels:ContactInfoViewModel}">
             <views:ContactInfoView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:TaskInfoViewModel}">
+            <views:TaskInfoView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

@@ -5,8 +5,6 @@ namespace CrmSystem.WPF.Helpers
 {
     public class AddEditContactViewBehaviors
     {
-
-
         public static string GetEmployeesLoadMethodName(DependencyObject obj)
         {
             return (string)obj.GetValue(EmployeesLoadMethodNameProperty);

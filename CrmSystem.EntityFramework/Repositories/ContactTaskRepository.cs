@@ -19,7 +19,10 @@ namespace CrmSystem.EntityFramework.Repositories
         public override IEnumerable<ContactTask> Find(Expression<Func<ContactTask, bool>> predicate)
         {
             return CrmSystemContext.Set<ContactTask>().Include(e => e.Contact)
-                .Include(e => e.Owner).Where(predicate);
+                .Include(e => e.Owner).Where(predicate)
+                .Include(ct => ct.CreatedBy)
+                .Include(ct => ct.ModifiedBy)
+                .Include(ct => ct.Owner);
         }
     }
 }

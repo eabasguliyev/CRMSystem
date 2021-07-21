@@ -16,13 +16,13 @@ namespace CrmSystem.EntityFramework.Repositories
         }
 
         public CrmSystemContext CrmSystemContext => Context as CrmSystemContext;
-
-
+        
         public IEnumerable<Contact> GetAll(int companyId)
         {
             return (base.GetAll() as DbSet<Contact>).Include(c => c.Company)
                 .Where(c => c.Company.Id == companyId).ToList();
         }
+
         public IEnumerable<Note> GetNotes(int id)
         {
             var contact = base.Get(id);
@@ -71,7 +71,7 @@ namespace CrmSystem.EntityFramework.Repositories
             return contact.Contracts;
         }
 
-        public new IEnumerable<Contact> GetAll()
+        public override IEnumerable<Contact> GetAll()
         {
             return (base.GetAll() as DbSet<Contact>).Include(c => c.CreatedBy)
                 .Include(c => c.CreatedBy.Employee)
@@ -89,5 +89,10 @@ namespace CrmSystem.EntityFramework.Repositories
                 .Include(c => c.ModifiedBy.Employee)
                 .Include(c => c.Owner);
         }
+
+        //public void LoadNotes(Contact contact)
+        //{
+        //    CrmSystemContext.Set<ContactNote>().Include(cn => cn.Contact).Where(cn => cn.Contact.Id == contact.Id).Load();
+        //}
     }
 }

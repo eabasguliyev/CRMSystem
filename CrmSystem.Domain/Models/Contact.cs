@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace CrmSystem.Domain.Models
@@ -14,13 +15,13 @@ namespace CrmSystem.Domain.Models
         public string Description { get; set; }
         public RecordDetail CreatedBy { get; set; }
         public RecordDetail ModifiedBy { get; set; }
-        public List<ContactNote> Notes { get; set; }
+        public ObservableCollection<ContactNote> Notes { get; set; }
         public List<ContactTask> Tasks { get; set; }
         public List<Contract> Contracts { get; set; }
 
         public Contact()
         {
-            Notes = new List<ContactNote>();
+            Notes = new ObservableCollection<ContactNote>();
             Tasks = new List<ContactTask>();
             Contracts = new List<Contract>();
         }

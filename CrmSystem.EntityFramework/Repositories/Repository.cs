@@ -20,12 +20,12 @@ namespace CrmSystem.EntityFramework.Repositories
             _entities = context.Set<TEntity>();
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return _entities.Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return Context.Set<TEntity>();
         }

@@ -16,13 +16,14 @@ namespace CrmSystem.WPF.ViewModels
     {
         private readonly IUnitOfWork _unitOfWork;
         private Contact _contact;
-        private ObservableCollection<Note> _notes;
 
         private object _lock = new object();
+        private ObservableCollection<Note> _notes;
 
         public ContactInfoViewModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            
             BackBtnClickCommand = new RelayCommand(Back);
             SaveNoteCommand = new RelayCommand<string>(SaveNote);
         }
@@ -41,23 +42,20 @@ namespace CrmSystem.WPF.ViewModels
             };
 
             Contact.Notes.Add(newNote);
+
             _unitOfWork.Save();
-
-
-            LoadNotes();
-            //AddNewNoteToList(newNote);
-        }
-
-        private void AddNewNoteToList(Note newNote)
-        {
-            Notes.Add(newNote);
-            //OnPropertyChanged(nameof(Notes));
         }
 
         public Contact Contact
         {
             get => _contact;
-            set => base.SetProperty(ref _contact, value);
+            set
+            {
+                base.SetProperty(ref _contact, value);
+
+                _unitOfWork.Contacts.GetNotes(_contact.Id);
+                OnPropertyChanged("Notes");
+            }
         }
 
         public ObservableObject BackVM { get; set; }
@@ -67,11 +65,9 @@ namespace CrmSystem.WPF.ViewModels
 
         public event Action<ObservableObject> BackVmRequested;
 
-        public ObservableCollection<Note> Notes
-        {
-            get => _notes;
-            set => base.SetProperty(ref _notes, value);
-        }
+
+        // birbasha olaraq getterini Contact.Notes etdim ishlemedi.
+        
 
         public void Back()
         {
@@ -80,7 +76,7 @@ namespace CrmSystem.WPF.ViewModels
 
         public void LoadNotes()
         {
-            Notes = new ObservableCollection<Note>(_unitOfWork.ContactNotes.Find(cn => cn.Contact.Id == Contact.Id).Select(cn => cn as Note).ToList());
+            
             //BindingOperations.EnableCollectionSynchronization(_notes, _lock);
         }
     }

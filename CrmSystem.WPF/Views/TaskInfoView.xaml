@@ -1,15 +1,13 @@
-﻿<UserControl x:Class="CrmSystem.WPF.Views.ContactInfoView"
+﻿<UserControl x:Class="CrmSystem.WPF.Views.TaskInfoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:helper="clr-namespace:CrmSystem.WPF.Helpers"
              xmlns:local="clr-namespace:CrmSystem.WPF.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             helper:ContactInfoViewBehaviors.LoadNotesMethodName="LoadNotes">
-   <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid DataContext="{Binding Contact}">
+             d:DesignHeight="450" d:DesignWidth="800">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid DataContext="{Binding Task}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -42,13 +40,9 @@
                         Grid.Column="3" Orientation="Horizontal"
                         HorizontalAlignment="Right">
                     <Button FontSize="25"
-                        Content="Send Email"
-                        Padding="5"
-                        Margin="5"/>
-                    <Button FontSize="25"
-                        Content="Edit"
-                        Padding="5"
-                        Margin="5"/>
+                            Content="Edit"
+                            Padding="5"
+                            Margin="5"/>
                 </StackPanel>
             </Grid>
 
@@ -74,7 +68,7 @@
                     <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            FontSize="25"
-                           Text="Contact Owner"
+                           Text="Task Owner"
                            Margin="5"/>
                     <TextBlock Grid.Row="0"
                            Grid.Column="1"
@@ -84,33 +78,23 @@
                     <TextBlock Grid.Row="1"
                            Grid.Column="0"
                            FontSize="25"
-                           Text="Email"
+                           Text="Due Date"
                            Margin="5"/>
                     <TextBlock Grid.Row="1"
                            Grid.Column="1"
                            FontSize="25"
                            Margin="5"
-                           Text="{Binding Email}"/>
+                           Text="{Binding DueDate}"/>
                     <TextBlock Grid.Row="2"
                            Grid.Column="0"
                            FontSize="25"
-                           Text="Phone"
+                           Text="Status"
                            Margin="5"/>
                     <TextBlock Grid.Row="2"
                            Grid.Column="1"
                            FontSize="25"
                            Margin="5"
-                           Text="{Binding Phone}"/>
-                    <TextBlock Grid.Row="3"
-                           Grid.Column="0"
-                           FontSize="25"
-                           Text="Mobile"
-                           Margin="5"/>
-                    <TextBlock Grid.Row="3"
-                           Grid.Column="1"
-                           FontSize="25"
-                           Margin="5"
-                           Text="{Binding Mobile}"/>
+                           Text="{Binding Status}"/>
                 </Grid>
 
                 <Expander Grid.Row="1">
@@ -133,19 +117,18 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
 
                         <TextBlock FontSize="25"
-                       Grid.Row="0" Grid.Column="0"
-                       Text="Contact Information"
+                       Grid.Row="0" 
+                       Text="Task Information"
                        Margin="5"/>
 
-                        <Grid Grid.Row="1" Grid.Column="0"
+                        <Grid Grid.Row="1"
                   Margin="5">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -162,7 +145,7 @@
                             <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            FontSize="20"
-                           Text="Contact Owner"
+                           Text="Task Owner"
                            Margin="5"/>
                             <TextBlock Grid.Row="0"
                          Grid.Column="1"
@@ -172,50 +155,62 @@
                             <TextBlock Grid.Row="1"
                            Grid.Column="0"
                            FontSize="20"
-                           Text="First Name"
+                           Text="Subject"
                            Margin="5"/>
                             <TextBlock Grid.Row="1"
                          Grid.Column="1"
                          Margin="5"
                          FontSize="20"
-                         Text="{Binding FirstName}"/>
+                         Text="{Binding Subject}"/>
                             <TextBlock Grid.Row="2"
                            Grid.Column="0"
                            FontSize="20"
-                           Text="Email"
+                           Text="Due Date"
                            Margin="5"/>
                             <TextBlock Grid.Row="2"
                          Grid.Column="1"
                          Margin="5"
                          FontSize="20"
-                         Text="{Binding Email}"/>
+                         Text="{Binding DueDate}"/>
                             <TextBlock Grid.Row="3"
                            Grid.Column="0"
                            FontSize="20"
-                           Text="Phone"
+                           Text="Contact"
                            Margin="5"/>
                             <TextBlock Grid.Row="3"
                          Grid.Column="1"
                          Margin="5"
                          FontSize="20"
-                         Text="{Binding Phone}"/>
+                         Text="{Binding Contact.FullName}"/>
                             <TextBlock Grid.Row="4"
                            Grid.Column="0"
                            FontSize="20"
-                           Text="Mobile"
+                           Text="Status"
                            Margin="5"/>
                             <TextBlock Grid.Row="4"
                          Grid.Column="1"
                          Margin="5"
                          FontSize="20"
-                         Text="{Binding Mobile}"/>
+                         Text="{Binding Status}"/>
 
                             <TextBlock Grid.Row="5"
                                        Grid.Column="0"
                                        FontSize="20"
+                                       Text="Priority"
+                                       Margin="5"/>
+                            <TextBlock Grid.Row="5"
+                                       Grid.Column="1"
+                                       Margin="5"
+                                       FontSize="20"
+                                       Text="{Binding Priority}"/>
+
+                            
+                            <TextBlock Grid.Row="6"
+                                       Grid.Column="0"
+                                       FontSize="20"
                                        Text="Created By"
                                        Margin="5"/>
-                            <StackPanel Grid.Row="5"
+                            <StackPanel Grid.Row="6"
                                         Grid.Column="1">
                                 <TextBlock Margin="5"
                                            FontSize="20"
@@ -225,12 +220,12 @@
                                            Text="{Binding CreatedBy.RecordDate}"/>
 
                             </StackPanel>
-                            <TextBlock Grid.Row="6"
+                            <TextBlock Grid.Row="7"
                                        Grid.Column="0"
                                        FontSize="20"
                                        Text="Modified By"
                                        Margin="5"/>
-                            <StackPanel Grid.Row="6"
+                            <StackPanel Grid.Row="7"
                                         Grid.Column="1">
                                 <TextBlock Margin="5"
                                            FontSize="20"
@@ -240,143 +235,37 @@
                                            Text="{Binding Modified.RecordDate}"/>
 
                             </StackPanel>
-                        </Grid>
 
-                        <Grid Grid.Row="1" Grid.Column="1"
-                  Margin="5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="8"
+                                       Grid.Column="0"
+                                       FontSize="20"
+                                       Text="Reminder"
+                                       Margin="5"/>
+                            <TextBlock Grid.Row="8"
+                                       Grid.Column="1"
+                                       Margin="5"
+                                       FontSize="20"
+                                       Text="{Binding Reminder.Date}"/>
 
-                            <TextBlock Grid.Row="0"
-                           Grid.Column="0"
-                           FontSize="20"
-                           Text="Lead Source"
-                           Margin="5"/>
-                            <TextBlock Grid.Row="0"
-                         Grid.Column="1"
-                         Margin="5"
-                         FontSize="20"
-                         Text="{Binding LeadSource.Name, Mode=OneWay}"/>
-                            <TextBlock Grid.Row="1"
-                           Grid.Column="0"
-                           FontSize="20"
-                           Text="Last Name"
-                           Margin="5"/>
-                            <TextBlock Grid.Row="1"
-                         Grid.Column="1"
-                         Margin="5"
-                         FontSize="20"
-                         Text="{Binding LastName}"/>
-                            <TextBlock Grid.Row="2"
-                           Grid.Column="0"
-                           FontSize="20"
-                           Text="Birthdate"
-                           Margin="5"/>
-                            <TextBlock Grid.Row="2"
-                         Grid.Column="1"
-                         Margin="5"
-                         FontSize="20"
-                         Text="{Binding Birthdate}"/>
-                            <TextBlock Grid.Row="3"
-                           Grid.Column="0"
-                           FontSize="20"
-                           Text="Title"
-                           Margin="5"/>
-                            <TextBlock Grid.Row="3"
-                         Grid.Column="1"
-                         Margin="5"
-                         FontSize="20"
-                         Text="{Binding Title}"/>
+                            <TextBlock Grid.Row="9"
+                                       Grid.Column="0"
+                                       FontSize="20"
+                                       Text="Closed Time"
+                                       Margin="5"/>
+                            <TextBlock Grid.Row="9"
+                                       Grid.Column="1"
+                                       Margin="5"
+                                       FontSize="20"
+                                       Text="{Binding ClosedBy.RecordDate}"/>
+
                         </Grid>
 
                         <TextBlock FontSize="25"
-                       Grid.Row="2" Grid.Column="0"
-                       Text="Address Information"
-                       Margin="5"/>
+                                   Grid.Row="2"
+                                   Text="Description Information"
+                                   Margin="5"/>
 
-
-                        <Grid Grid.Row="3" Grid.Column="0"
-                  Margin="5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Row="0"
-                           Grid.Column="0"
-                           FontSize="20"
-                           Text="Street"
-                           Margin="5"/>
-                            <TextBlock Grid.Row="0"
-                         Grid.Column="1"
-                         Margin="5"
-                         FontSize="20"
-                         Text="{Binding AddressInfo.Street}"/>
-                            <TextBlock Grid.Row="1"
-                           Grid.Column="0"
-                           FontSize="20"
-                           Text="City"
-                           Margin="5"/>
-                            <TextBlock Grid.Row="1"
-                         Grid.Column="1"
-                         Margin="5"
-                         FontSize="20"
-                         Text="{Binding AddressInfo.City}"/>
-                            <TextBlock Grid.Row="2"
-                           Grid.Column="0"
-                           FontSize="20"
-                           Text="State"
-                           Margin="5"/>
-                            <TextBlock Grid.Row="2"
-                         Grid.Column="1"
-                         Margin="5"
-                         FontSize="20"
-                         Text="{Binding AddressInfo.State}"/>
-                            <TextBlock Grid.Row="3"
-                           Grid.Column="0"
-                           FontSize="20"
-                           Text="Zip Code"
-                           Margin="5"/>
-                            <TextBlock Grid.Row="3"
-                         Grid.Column="1"
-                         Margin="5"
-                         FontSize="20"
-                         Text="{Binding AddressInfo.ZipCode}"/>
-                            <TextBlock Grid.Row="4"
-                           Grid.Column="0"
-                           FontSize="20"
-                           Text="Country"
-                           Margin="5"/>
-                            <TextBlock Grid.Row="4"
-                         Grid.Column="1"
-                         Margin="5"
-                         FontSize="20"
-                         Text="{Binding AddressInfo.Country}"/>
-                        </Grid>
-
-                        <TextBlock FontSize="25"
-                       Grid.Row="2" Grid.Column="1"
-                       Text="Description Information"
-                       Margin="5"/>
-
-                        <Grid Grid.Row="3"
-                  Grid.Column="1">
+                        <Grid Grid.Row="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -399,7 +288,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <ListView Grid.Row="0" ItemsSource="{Binding Contact.Notes}" x:Name="ListBoxNotes" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ListView Grid.Row="0" ItemsSource="{Binding Notes}" x:Name="ListBoxNotes" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListView.ItemTemplate>
                             <DataTemplate DataType="ListBoxItem">
                                 <Grid>
