@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using CrmSystem.Domain;
 using CrmSystem.WPF.Helpers;
@@ -20,6 +21,22 @@ namespace CrmSystem.WPF.ViewModels
 
             BackBtnClickCommand = new RelayCommand(Back);
             EditBtnCommand = new RelayCommand(Edit);
+            CloseTaskBtnCommand = new RelayCommand(CloseTask);
+        }
+
+        private void CloseTask()
+        {
+            var status = MessageBox.Show("Are you sure you want to mark this task as completed?", 
+                "Mark as Completed", MessageBoxButton.YesNo,
+                MessageBoxImage.Information);
+
+            if (status == MessageBoxResult.No)
+                return;
+
+
+            Task.Status = StatusOption.Completed;
+            _unitOfWork.Save();
+            Back();
         }
 
         private void Edit()
@@ -40,6 +57,7 @@ namespace CrmSystem.WPF.ViewModels
         public ObservableObject BackVM { get; set; }
         public ICommand BackBtnClickCommand { get; set; }
         public ICommand EditBtnCommand { get; set; }
+        public ICommand CloseTaskBtnCommand { get; set; }
 
 
         public event Action<ObservableObject> BackVmRequested;

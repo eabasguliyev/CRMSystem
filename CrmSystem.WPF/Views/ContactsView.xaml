@@ -32,7 +32,9 @@
             <DataGrid ItemsSource="{Binding Contacts}" 
                       CanUserAddRows="False"
                       AutoGenerateColumns="False"
-                      SelectedItem="{Binding SelectedContact, Mode=OneWayToSource}">
+                      SelectedItem="{Binding SelectedContact, Mode=OneWayToSource}"
+                      IsReadOnly="True"
+                      SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Fullname"
                                         Width="*"

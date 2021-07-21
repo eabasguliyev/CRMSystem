@@ -32,7 +32,9 @@
             <DataGrid ItemsSource="{Binding Tasks}" 
                       CanUserAddRows="False"
                       AutoGenerateColumns="False"
-                      SelectedItem="{Binding SelectedTask, Mode=OneWayToSource}">
+                      SelectedItem="{Binding SelectedTask, Mode=OneWayToSource}"
+                      IsReadOnly="True"
+                      SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Subject"
                                         Width="*"

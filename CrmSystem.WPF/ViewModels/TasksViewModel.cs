@@ -79,6 +79,7 @@ namespace CrmSystem.WPF.ViewModels
         {
             Expression<Func<ContactTask, bool>> predicate = null;
 
+            // Load Open Tasks
             switch (App.LoggedUser.Profile)
             {
                 case ProfileOption.Administrator:

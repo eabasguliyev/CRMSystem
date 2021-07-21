@@ -44,6 +44,11 @@
                             Padding="5"
                             Margin="5"
                             Command="{Binding DataContext.EditBtnCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                    <Button FontSize="25"
+                            Content="Close Task"
+                            Padding="5"
+                            Margin="5"
+                            Command="{Binding DataContext.CloseTaskBtnCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                 </StackPanel>
             </Grid>
 
