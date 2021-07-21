@@ -26,6 +26,16 @@ namespace CrmSystem.WPF.ViewModels
             
             BackBtnClickCommand = new RelayCommand(Back);
             SaveNoteCommand = new RelayCommand<string>(SaveNote);
+            EditBtnClickCommand = new RelayCommand(Edit);
+        }
+
+        private void Edit()
+        {
+            EditButtonClicked?.Invoke(this, new AddEditContactEventArgs()
+            {
+                EditMode = true,
+                Contact = Contact
+            });
         }
 
         private void SaveNote(string note)
@@ -62,8 +72,10 @@ namespace CrmSystem.WPF.ViewModels
 
         public ICommand BackBtnClickCommand { get; set; }
         public ICommand SaveNoteCommand { get; set; }
+        public ICommand EditBtnClickCommand { get; set; }
 
         public event Action<ObservableObject> BackVmRequested;
+        public event EventHandler<AddEditContactEventArgs> EditButtonClicked;
 
 
         // birbasha olaraq getterini Contact.Notes etdim ishlemedi.

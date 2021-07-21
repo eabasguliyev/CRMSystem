@@ -49,7 +49,9 @@
                     <Button FontSize="25"
                         Content="Edit"
                         Padding="5"
-                        Margin="5"/>
+                        Margin="5"
+                        Command="{Binding DataContext.EditBtnClickCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+
                 </StackPanel>
             </Grid>
 

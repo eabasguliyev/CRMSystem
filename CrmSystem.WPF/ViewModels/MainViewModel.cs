@@ -53,6 +53,7 @@ namespace CrmSystem.WPF.ViewModels
 
             _contactInfoViewModel = new ContactInfoViewModel(_unitOfWork);
             _contactInfoViewModel.BackVmRequested += NavToPreviousVm;
+            _contactInfoViewModel.EditButtonClicked += NavToAddEditContact;
 
             _taskInfoViewModel = new TaskInfoViewModel(_unitOfWork);
             _taskInfoViewModel.BackVmRequested += NavToPreviousVm;
