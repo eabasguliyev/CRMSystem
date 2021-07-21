@@ -56,6 +56,7 @@ namespace CrmSystem.WPF.ViewModels
 
             _taskInfoViewModel = new TaskInfoViewModel(_unitOfWork);
             _taskInfoViewModel.BackVmRequested += NavToPreviousVm;
+            _taskInfoViewModel.EditButtonClicked += NavToAddEditTask;
 
             ContactsClickCommand = new RelayCommand(NavToContacts);
             SettingsClickCommand = new RelayCommand(NavToSettings);
