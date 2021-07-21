@@ -19,13 +19,14 @@ namespace CrmSystem.WPF.ViewModels
 
         private object _lock = new object();
         private ObservableCollection<Note> _notes;
+        private string _text;
 
         public ContactInfoViewModel(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             
             BackBtnClickCommand = new RelayCommand(Back);
-            SaveNoteCommand = new RelayCommand<string>(SaveNote);
+            SaveNoteCommand = new RelayCommand(SaveNote);
             EditBtnClickCommand = new RelayCommand(Edit);
         }
 
@@ -38,7 +39,7 @@ namespace CrmSystem.WPF.ViewModels
             });
         }
 
-        private void SaveNote(string note)
+        private void SaveNote()
         {
             var newNote = new ContactNote()
             {
@@ -48,12 +49,20 @@ namespace CrmSystem.WPF.ViewModels
                     Employee = App.LoggedUser,
                     RecordDate = DateTime.Now
                 },
-                Text = note
+                Text = Text
             };
 
             Contact.Notes.Add(newNote);
 
             _unitOfWork.Save();
+
+            Text = String.Empty;
+        }
+
+        public string Text
+        {
+            get => _text;
+            set => base.SetProperty(ref _text, value);
         }
 
         public Contact Contact

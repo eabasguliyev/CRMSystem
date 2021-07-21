@@ -432,7 +432,7 @@
                             </Grid.RowDefinitions>
 
                             <TextBox Grid.Row="0" FontSize="20" Height="100"
-                                     x:Name="NoteTextBox"/>
+                                     Text="{Binding DataContext.Text, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                             <StackPanel Grid.Row="1"
                                         Orientation="Horizontal"
                                         HorizontalAlignment="Right">
@@ -444,8 +444,7 @@
                                         Content="Save"
                                         Margin="5"
                                         Padding="5"
-                                        Command="{Binding DataContext.SaveNoteCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                        CommandParameter="{Binding ElementName=NoteTextBox, Path=Text}"/>
+                                        Command="{Binding DataContext.SaveNoteCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
