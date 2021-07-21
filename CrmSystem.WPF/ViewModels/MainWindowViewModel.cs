@@ -62,5 +62,10 @@ namespace CrmSystem.WPF.ViewModels
 
             CurrentViewModel = _mainViewModel;
         }
+
+        public void OnClosing()
+        {
+            _unitOfWork.Dispose();
+        }
     }
 }

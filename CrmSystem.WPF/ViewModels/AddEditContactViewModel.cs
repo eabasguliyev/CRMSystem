@@ -174,5 +174,12 @@ namespace CrmSystem.WPF.ViewModels
             if (EditableContact.LeadSource != null)
                 SelectedLeadSource = EditableContact.LeadSource;
         }
+
+        public void ViewLoad()
+        {
+            LoadEmployees();
+            LoadLeadSources();
+            InitialConfiguration();
+        }
     }
 }

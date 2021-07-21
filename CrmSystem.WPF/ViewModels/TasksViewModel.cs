@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.AccessControl;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -74,9 +75,31 @@ namespace CrmSystem.WPF.ViewModels
         }
 
 
-        public void LoadTasks()
+        private void LoadTasks()
         {
-            Tasks = new ObservableCollection<BaseTask>(_unitOfWork.ContactTasks.Find(ct => ct.Contact.Company.Id == App.Company.Id).ToList());
+            Expression<Func<ContactTask, bool>> predicate = null;
+
+            switch (App.LoggedUser.Profile)
+            {
+                case ProfileOption.Administrator:
+                case ProfileOption.SuperAdmin:
+                {
+                    predicate = (ct) => ct.Contact.Company.Id == App.Company.Id;
+                    break;
+                }
+                case ProfileOption.Standard:
+                {
+                    predicate = (ct) => ct.Contact.Company.Id == App.Company.Id && ct.Owner.Id == App.LoggedUser.Id;
+                    break;
+                }
+            }
+
+            Tasks = new ObservableCollection<BaseTask>(_unitOfWork.ContactTasks.Find(predicate));
+        }
+
+        public void ViewLoad()
+        {
+            LoadTasks();
         }
     }
 }

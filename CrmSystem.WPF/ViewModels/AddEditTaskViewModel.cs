@@ -179,5 +179,14 @@ namespace CrmSystem.WPF.ViewModels
             Contacts = new ObservableCollection<Contact>(_unitOfWork.Contacts.Find(e => e.Company.Id == App.Company.Id).Select(e => e as Contact));
         }
 
+
+        public void ViewLoad()
+        {
+            LoadEmployees();
+            LoadStatuses();
+            LoadPriorities();
+            LoadContacts();
+            InitialConfiguration();
+        }
     }
 }

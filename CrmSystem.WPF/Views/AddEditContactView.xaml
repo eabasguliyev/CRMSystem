@@ -6,11 +6,10 @@
              xmlns:local="clr-namespace:CrmSystem.WPF.Views"
              xmlns:metadata="clr-namespace:System.Reflection.Metadata;assembly=System.Reflection.Metadata"
              xmlns:helpers="clr-namespace:CrmSystem.WPF.Helpers"
+             xmlns:behaviors="clr-namespace:CrmSystem.WPF.Helpers.Behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             helpers:AddEditContactViewBehaviors.EmployeesLoadMethodName="LoadEmployees"
-             helpers:AddEditContactViewBehaviors.LeadSourcesLoadMethodName="LoadLeadSources"
-             helpers:AddEditContactViewBehaviors.InitialMethodName="InitialConfiguration">
+             behaviors:AddEditContactViewBehaviors.ViewLoadMethodName="ViewLoad">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

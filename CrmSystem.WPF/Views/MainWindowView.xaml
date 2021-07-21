@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrmSystem.WPF.Views"
         xmlns:viewModels="clr-namespace:CrmSystem.WPF.ViewModels"
+        xmlns:helper="clr-namespace:CrmSystem.WPF.Helpers.Behaviors"
         mc:Ignorable="d"
-        Title="CrmSystem" Height="450" Width="800">
+        Title="CrmSystem" Height="450" Width="800"
+        helper:MainWindowViewBehaviors.OnClosingMethodName="OnClosing">
     <Window.DataContext>
         <viewModels:MainWindowViewModel/>
     </Window.DataContext>

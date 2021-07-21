@@ -79,5 +79,11 @@ namespace CrmSystem.WPF.ViewModels
             
             //BindingOperations.EnableCollectionSynchronization(_notes, _lock);
         }
+
+        public void ViewLoad()
+        {
+
+            //LoadNotes();
+        }
     }
 }

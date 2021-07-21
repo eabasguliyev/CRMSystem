@@ -99,6 +99,8 @@ namespace CrmSystem.WPF.ViewModels
         {
             App.LoggedUser = null;
             App.Company = null;
+
+            CurrentViewModel = null;
             LogoutEvent?.Invoke();
         }
 
@@ -152,7 +154,7 @@ namespace CrmSystem.WPF.ViewModels
 
         public void ViewLoad()
         {
-            CurrentViewModel = null;
+            InitialSetup();
         }
     }
 }

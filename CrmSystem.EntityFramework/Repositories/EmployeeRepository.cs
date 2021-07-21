@@ -26,23 +26,4 @@ namespace CrmSystem.EntityFramework.Repositories
             return CrmSystemContext.Set<Employee>().Include(e => e.Company).Where(predicate);
         }
     }
-
-    public class RequestedEmployeeRepository : Repository<RequestedEmployee>, IRequestedEmployeeRepository
-    {
-        public RequestedEmployeeRepository(CrmSystemContext context) : base(context)
-        {
-        }
-
-        public CrmSystemContext CrmSystemContext => Context as CrmSystemContext;
-        public override RequestedEmployee SingleOrDefault(Expression<Func<RequestedEmployee, bool>> predicate)
-        {
-            return CrmSystemContext.Set<RequestedEmployee>().Include(e => e.Company)
-                .Include(e => e.AddressInfo).SingleOrDefault(predicate);
-        }
-
-        public override IEnumerable<RequestedEmployee> Find(Expression<Func<RequestedEmployee, bool>> predicate)
-        {
-            return CrmSystemContext.Set<RequestedEmployee>().Include(e => e.Company).Where(predicate);
-        }
-    }
 }

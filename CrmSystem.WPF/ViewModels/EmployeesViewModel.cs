@@ -86,7 +86,7 @@ namespace CrmSystem.WPF.ViewModels
         }
 
 
-        public void LoadEmployees()
+        private void LoadEmployees()
         {
             var employees = new List<BaseEmployee>();
 
@@ -99,10 +99,13 @@ namespace CrmSystem.WPF.ViewModels
 
         public void ViewLoad()
         {
-            if (!IsFirstLoad) return;
-
-            SelectedEmployee = App.LoggedUser;
-            IsFirstLoad = false;
+            LoadEmployees();
+            
+            if (IsFirstLoad)
+            {
+                SelectedEmployee = App.LoggedUser;
+                IsFirstLoad = false;
+            }
         }
     }
 }

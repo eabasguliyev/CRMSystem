@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Data.Entity.Infrastructure;
+using System.Windows;
 using System.Windows.Input;
+using CrmSystem.Domain.Models;
 using CrmSystem.WPF.Helpers;
 
 namespace CrmSystem.WPF.ViewModels
@@ -17,7 +18,21 @@ namespace CrmSystem.WPF.ViewModels
         public event Action UsersButtonClicked;
         private void UsersButtonClick()
         {
-            UsersButtonClicked?.Invoke();
+            switch (App.LoggedUser.Profile)
+            {
+                case ProfileOption.Administrator:
+                case ProfileOption.SuperAdmin:
+                {
+                    UsersButtonClicked?.Invoke();
+                    break;
+                }
+                case ProfileOption.Standard:
+                {
+                    MessageBox.Show("You don't have required permission. Contact with IT department.",
+                        "Authorization error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
+                }
+            }
         }
     }
 }

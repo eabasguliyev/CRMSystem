@@ -53,7 +53,7 @@ namespace CrmSystem.WPF.ViewModels
 
         public Contact SelectedContact { get; set; }
 
-        public void LoadContacts()
+        private void LoadContacts()
         {
             Contacts = new ObservableCollection<Contact>(_unitOfWork.Contacts.Find(c => c.Company.Id == App.Company.Id));
         }
@@ -76,5 +76,10 @@ namespace CrmSystem.WPF.ViewModels
             });
         }
 
+
+        public void ViewLoad()
+        {
+            LoadContacts();
+        }
     }
 }

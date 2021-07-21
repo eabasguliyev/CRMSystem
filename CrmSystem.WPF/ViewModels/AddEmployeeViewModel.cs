@@ -81,5 +81,11 @@ namespace CrmSystem.WPF.ViewModels
                 .Where(r => r != RoleOption.Ceo)
                 .ToList();
         }
+
+        public void ViewLoad()
+        {
+            LoadRoles();
+            LoadProfiles();
+        }
     }
 }
