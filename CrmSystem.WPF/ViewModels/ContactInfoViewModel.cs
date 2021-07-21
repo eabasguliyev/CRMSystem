@@ -78,23 +78,18 @@ namespace CrmSystem.WPF.ViewModels
         public event EventHandler<AddEditContactEventArgs> EditButtonClicked;
 
 
-        // birbasha olaraq getterini Contact.Notes etdim ishlemedi.
-        
+        public ObservableCollection<Note> Notes => new ObservableCollection<Note>(Contact.Notes);
+
+
 
         public void Back()
         {
             BackVmRequested?.Invoke(BackVM);
         }
-
-        public void LoadNotes()
-        {
-            
-            //BindingOperations.EnableCollectionSynchronization(_notes, _lock);
-        }
+        
 
         public void ViewLoad()
         {
-
             //LoadNotes();
         }
     }
