@@ -6,8 +6,16 @@
         xmlns:local="clr-namespace:CrmSystem.WPF.Views"
         xmlns:viewModels="clr-namespace:CrmSystem.WPF.ViewModels"
         xmlns:helper="clr-namespace:CrmSystem.WPF.Helpers.Behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="CrmSystem" Height="450" Width="800"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         helper:MainWindowViewBehaviors.OnClosingMethodName="OnClosing">
     <Window.DataContext>
         <viewModels:MainWindowViewModel/>

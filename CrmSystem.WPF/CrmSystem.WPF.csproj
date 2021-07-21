@@ -17,4 +17,8 @@
     <Folder Include="CustomControls\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
+  </ItemGroup>
+
 </Project>
