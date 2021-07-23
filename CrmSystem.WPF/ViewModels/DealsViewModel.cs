@@ -25,7 +25,14 @@ namespace CrmSystem.WPF.ViewModels
 
             CreateDealClickCommand = new RelayCommand(CreateDeal);
             EditDealClickCommand = new RelayCommand(EditDeal);
+            DealInfoClickCommand = new RelayCommand(NavToDealInfo);
         }
+
+        private void NavToDealInfo()
+        {
+            DealInfoClicked?.Invoke(SelectedDeal);
+        }
+
 
         private void EditDeal()
         {
@@ -57,6 +64,9 @@ namespace CrmSystem.WPF.ViewModels
 
         public ICommand CreateDealClickCommand { get; set; }
         public ICommand EditDealClickCommand { get; set; }
+        public ICommand DealInfoClickCommand { get; set; }
+
+        public event Action<Contract> DealInfoClicked;
 
 
         public event EventHandler<AddEditDealEventArgs> CreateOrEditDealClicked;

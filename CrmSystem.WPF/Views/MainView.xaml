@@ -26,7 +26,8 @@
                 <Button Content="Dashboard"
                         FontSize="20"
                         Margin="5"
-                        Padding="5"/>
+                        Padding="5"
+                        Width="100"/>
                 <Button Content="Tasks"
                         FontSize="20"
                         Margin="5"

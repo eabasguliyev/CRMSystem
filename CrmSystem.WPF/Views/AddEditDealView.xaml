@@ -177,7 +177,7 @@
                     <TextBlock Grid.Row="4"
                                Grid.Column="0"
                                FontSize="20"
-                               Text="ExpectedRevenue"
+                               Text="Expected Revenue"
                                Margin="5"/>
                     <TextBox Grid.Row="4"
                              Grid.Column="1"
