@@ -18,6 +18,7 @@ namespace CrmSystem.Domain
         IRequestedEmployeeRepository RequestedEmployees { get; }
         IContactNoteRepository ContactNotes { get; }
         IContractNoteRepository ContractNotes { get; }
+        IStageRepository Stages { get; }
 
 
         //public void ExplicitLoading<TEntity2>(Expression<Func<TEntity2, bool>> predicate) where TEntity2 : class;

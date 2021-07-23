@@ -20,6 +20,7 @@ namespace CrmSystem.WPF.ViewModels
         private ContactInfoViewModel _contactInfoViewModel;
         private TaskInfoViewModel _taskInfoViewModel;
         private DealsViewModel _dealsViewModel;
+        private AddEditDealViewModel _addEditDealViewModel;
 
         public Employee LoggedUser => App.LoggedUser;
 
@@ -61,12 +62,24 @@ namespace CrmSystem.WPF.ViewModels
             _taskInfoViewModel.EditButtonClicked += NavToAddEditTask;
 
             _dealsViewModel = new DealsViewModel(_unitOfWork);
+            _dealsViewModel.CreateOrEditDealClicked += NavToAddEditDeal;
+
+            _addEditDealViewModel = new AddEditDealViewModel(_unitOfWork);
+            _addEditDealViewModel.SaveOrCancelClicked += NavToDeals;
 
             ContactsClickCommand = new RelayCommand(NavToContacts);
             SettingsClickCommand = new RelayCommand(NavToSettings);
             LogoutClickCommand = new RelayCommand(Logout);
             TasksClickCommand = new RelayCommand(NavToTasks);
             DealsClickCommand = new RelayCommand(NavToDeals);
+        }
+
+        private void NavToAddEditDeal(object? sender, AddEditDealEventArgs e)
+        {
+            _addEditDealViewModel.Deal = e.Deal;
+            _addEditDealViewModel.EditMode = e.EditMode;
+
+            CurrentViewModel = _addEditDealViewModel;
         }
 
         private void NavToDeals()

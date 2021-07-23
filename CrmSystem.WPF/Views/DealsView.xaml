@@ -13,7 +13,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <WrapPanel Grid.Row="0"
                    HorizontalAlignment="Right">
             <Button Content="Create Deal"
