@@ -78,6 +78,10 @@
                     <DataTemplate DataType="{x:Type viewModels:TaskInfoViewModel}">
                         <views:TaskInfoView/>
                     </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewModels:DealsViewModel}">
+                        <views:DealsView/>
+                    </DataTemplate>
                 </ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />

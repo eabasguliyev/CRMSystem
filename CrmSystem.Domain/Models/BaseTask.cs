@@ -38,6 +38,8 @@ namespace CrmSystem.Domain.Models
         }
     }
 
+
+
     public enum StatusOption
     {
         NotStarted = 1,

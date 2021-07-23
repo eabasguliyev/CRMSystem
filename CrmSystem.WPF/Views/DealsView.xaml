@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="CrmSystem.WPF.Views.DealsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CrmSystem.WPF.Views"
+             xmlns:behaviors="clr-namespace:CrmSystem.WPF.Helpers.Behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             behaviors:DealsViewBehaviors.ViewLoadMethodName="ViewLoad">
+    <Grid Margin="0 5 0 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0"
+                   HorizontalAlignment="Right">
+            <Button Content="Create Deal"
+                    FontSize="20"
+                    Margin="5"
+                    Padding="5"
+                    Command="{Binding CreateDealClickCommand}"/>
+            <Button Content="Actions"
+                    FontSize="20"
+                    Margin="0 5 5 5"
+                    Padding="5"/>
+        </WrapPanel>
+
+        <Grid Grid.Row="1">
+            <DataGrid ItemsSource="{Binding Deals}" 
+                      CanUserAddRows="False"
+                      AutoGenerateColumns="False"
+                      SelectedItem="{Binding SelectedDeal, Mode=OneWayToSource}"
+                      IsReadOnly="True"
+                      SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Deal Name"
+                                        Width="*"
+                                        Binding="{Binding Name, Mode=OneWay}"/>
+                    <DataGridTextColumn Header="Amount"
+                                        Width="*"
+                                        Binding="{Binding Amount}"/>
+                    <DataGridTextColumn Header="Closing Date"
+                                        Width="*"
+                                        Binding="{Binding ClosingDate}"/>
+                    <DataGridTextColumn Header="Stage"
+                                        Width="*"
+                                        Binding="{Binding Stage.Name}"/>
+                    <DataGridTextColumn Header="Contact Name"
+                                        Width="*"
+                                        Binding="{Binding Contact.FullName, Mode=OneWay}"/>
+                    <DataGridTextColumn Header="Task Owner"
+                                        Width="*"
+                                        Binding="{Binding Owner.FullName, Mode=OneWay}"/>
+                    <DataGridTextColumn Header="Last Activity"
+                                        Width="*"
+                                        Binding="{Binding ModifiedBy.RecordDate}"/>
+
+                    <DataGridTemplateColumn Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <WrapPanel Orientation="Horizontal">
+                                    <Button Width="100"
+                                            FontSize="18"
+                                            Content="Edit"
+                                            Margin="5"
+                                            Command="{Binding DataContext.EditDealClickCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+
+                                    <Button Width="100"
+                                            FontSize="18"
+                                            Content="Info"
+                                            Margin="5"
+                                            Command="{Binding DataContext.DealInfoClickCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

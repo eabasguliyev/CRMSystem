@@ -21,6 +21,12 @@ namespace CrmSystem.Domain.Models
         public Contact Contact { get; set; }
     }
 
+    public class ContractNote : Note
+    {
+        public int ContractId { get; set; }
+        public Contract Contract { get; set; }
+    }
+
     public class LeadNote : Note
     {
         public int LeadId { get; set; }

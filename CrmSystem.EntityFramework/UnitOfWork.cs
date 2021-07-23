@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using CrmSystem.Domain;
@@ -26,6 +25,7 @@ namespace CrmSystem.EntityFramework
             Companies = new Repository<Company>(_context);
             RequestedEmployees = new RequestedEmployeeRepository(_context);
             ContactNotes = new ContactNoteRepository(_context);
+            ContractNotes = new ContractNoteRepository(_context);
         }
 
         public void Dispose()
@@ -42,6 +42,7 @@ namespace CrmSystem.EntityFramework
         public IRepository<Company> Companies { get; }
         public IRequestedEmployeeRepository RequestedEmployees { get; }
         public IContactNoteRepository ContactNotes { get; }
+        public IContractNoteRepository ContractNotes { get; }
 
         //public void ExplicitLoading<TEntity2>(Expression<Func<TEntity2, bool>> predicate) where TEntity2 : class
         //{
