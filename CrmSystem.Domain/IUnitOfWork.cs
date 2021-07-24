@@ -18,6 +18,7 @@ namespace CrmSystem.Domain
         IRequestedEmployeeRepository RequestedEmployees { get; }
         IContactNoteRepository ContactNotes { get; }
         IContractNoteRepository ContractNotes { get; }
+        ITaskNoteRepository TaskNotes { get; }
         IStageRepository Stages { get; }
 
 

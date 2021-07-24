@@ -13,6 +13,7 @@ namespace CrmSystem.Domain.Models
     public class TaskNote : Note
     {
         public int TaskId { get; set; }
+        public ContactTask Task { get; set; }
     }
 
     public class ContactNote : Note

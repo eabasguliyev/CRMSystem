@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CrmSystem.WPF.Views"
+             xmlns:behaviors="clr-namespace:CrmSystem.WPF.Helpers.Behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             behaviors:TaskInfoViewBehaviors.ViewLoadMethodName="ViewLoad">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid DataContext="{Binding Task}">
             <Grid.RowDefinitions>
@@ -288,58 +290,61 @@
                         </Grid>
                     </Grid>
                 </Expander>
-                <Grid Grid.Row="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <ListView Grid.Row="0" ItemsSource="{Binding Notes}" x:Name="ListBoxNotes" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                        <ListView.ItemTemplate>
-                            <DataTemplate DataType="ListBoxItem">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" Text="{Binding Text}"/>
-                                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
-                    <Grid Grid.Row="1">
+                <Expander Grid.Row="2">
+                    <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBox Grid.Row="0" FontSize="20" Height="100"
-                                     x:Name="NoteTextBox"/>
-                        <StackPanel Grid.Row="1"
+                        <ListView Grid.Row="0" ItemsSource="{Binding Notes, UpdateSourceTrigger=PropertyChanged}" x:Name="ListBoxNotes" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                            <ListView.ItemTemplate>
+                                <DataTemplate DataType="ListBoxItem">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" Text="{Binding Text}"/>
+                                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBox Grid.Row="0" FontSize="20" Height="100"
+                                     x:Name="NoteTextBox"
+                                     Text="{Binding DataContext.Text, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                            <StackPanel Grid.Row="1"
                                         Orientation="Horizontal"
                                         HorizontalAlignment="Right">
-                            <Button FontSize="25"
+                                <Button FontSize="25"
                                         Content="Cancel"
                                         Margin="5"
                                         Padding="5"/>
-                            <Button FontSize="25"
+                                <Button FontSize="25"
                                         Content="Save"
                                         Margin="5"
                                         Padding="5"
                                         Command="{Binding DataContext.SaveNoteCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                         CommandParameter="{Binding ElementName=NoteTextBox, Path=Text}"/>
-                        </StackPanel>
+                            </StackPanel>
+                        </Grid>
                     </Grid>
-                </Grid>
+                </Expander>
             </Grid>
         </Grid>
     </ScrollViewer>

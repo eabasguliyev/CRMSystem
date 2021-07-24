@@ -17,8 +17,6 @@ namespace CrmSystem.WPF.ViewModels
         private readonly IUnitOfWork _unitOfWork;
         private Contact _contact;
 
-        private object _lock = new object();
-        private ObservableCollection<Note> _notes;
         private string _text;
 
         public ContactInfoViewModel(IUnitOfWork unitOfWork)
@@ -41,6 +39,9 @@ namespace CrmSystem.WPF.ViewModels
 
         private void SaveNote()
         {
+            if (string.IsNullOrWhiteSpace(Text))
+                return;
+
             var newNote = new ContactNote()
             {
                 Contact = Contact,
@@ -73,7 +74,7 @@ namespace CrmSystem.WPF.ViewModels
                 base.SetProperty(ref _contact, value);
 
                 _unitOfWork.Contacts.GetNotes(_contact.Id);
-                OnPropertyChanged("Notes");
+                OnPropertyChanged(nameof(Notes));
             }
         }
 
@@ -88,7 +89,6 @@ namespace CrmSystem.WPF.ViewModels
 
 
         public ObservableCollection<Note> Notes => new ObservableCollection<Note>(Contact.Notes);
-
 
 
         public void Back()

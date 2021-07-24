@@ -24,5 +24,17 @@ namespace CrmSystem.EntityFramework.Repositories
                 .Include(ct => ct.ModifiedBy)
                 .Include(ct => ct.Owner);
         }
+
+        public IEnumerable<Note> GetNotes(int id)
+        {
+            var task = base.Get(id);
+
+            if (task == null)
+                return null;
+
+            CrmSystemContext.TaskNotes.Include(tn => tn.Task).Where(tn => tn.Task.Id == task.Id).Load();
+
+            return task.Notes;
+        }
     }
 }

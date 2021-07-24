@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace CrmSystem.Domain.Models
 {
@@ -14,11 +15,11 @@ namespace CrmSystem.Domain.Models
         public RecordDetail ModifiedBy { get; set; }
         public StatusOption Status { get; set; }
         public string Description { get; set; }
-        public List<TaskNote> Notes { get; set; }
+        public ObservableCollection<TaskNote> Notes { get; set; }
 
         public BaseTask()
         {
-            Notes = new List<TaskNote>();
+            Notes = new ObservableCollection<TaskNote>();
         }
         public object Clone()
         {

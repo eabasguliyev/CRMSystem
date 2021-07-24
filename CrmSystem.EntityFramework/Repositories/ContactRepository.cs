@@ -42,7 +42,7 @@ namespace CrmSystem.EntityFramework.Repositories
             if (contact == null)
                 return null;
 
-            CrmSystemContext.Tasks.Where(t => t.ContactId == contact.Id && t.Status != StatusOption.Completed).Load();
+            CrmSystemContext.ContactTasks.Where(t => t.ContactId == contact.Id && t.Status != StatusOption.Completed).Load();
 
             return contact.Tasks;
         }
@@ -54,7 +54,7 @@ namespace CrmSystem.EntityFramework.Repositories
             if (contact == null)
                 return null;
 
-            CrmSystemContext.Tasks.Where(t => t.ContactId == contact.Id && t.Status == StatusOption.Completed).Load();
+            CrmSystemContext.ContactTasks.Where(t => t.ContactId == contact.Id && t.Status == StatusOption.Completed).Load();
 
             return contact.Tasks;
         }
