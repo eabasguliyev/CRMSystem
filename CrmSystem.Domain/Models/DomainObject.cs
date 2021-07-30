@@ -25,8 +25,15 @@ namespace CrmSystem.Domain.Models
     //    }
     //}
 
-    public class DomainObject//:BindableBase
+    public class DomainObject:INotifyPropertyChanged
     {
         public int Id { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

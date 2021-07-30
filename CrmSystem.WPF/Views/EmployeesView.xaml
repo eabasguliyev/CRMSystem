@@ -27,6 +27,7 @@
                         Content="Add User"
                         Margin="5"
                         Padding="5"
+                        Height="40"
                         Command="{Binding AddUserClickCommand}"/>
             </Grid>
 

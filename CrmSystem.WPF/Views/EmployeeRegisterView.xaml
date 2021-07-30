@@ -56,11 +56,11 @@
                    FontSize="25"
                    Text="Password"
                    Margin="5"/>
-        <customControls:BindablePasswordBox Grid.Row="1" Grid.Column="1"
+        <customControls:BindablePasswordBox Grid.Row="3" Grid.Column="1"
                                             FontSize="25"
                                             VerticalAlignment="Center"
                                             VerticalContentAlignment="Center"
-                                            Width="200"
+                                            Width="220"
                                             Margin="10"
                                             Password="{Binding Password, Mode=OneWayToSource}"/>
 
@@ -69,6 +69,7 @@
                  FontSize="25"
                  Margin="0 10 0 0"
                  Padding="5"
+                 Height="45"
                  Content="Sign Up"
                  Command="{Binding DataContext.SignUpClickCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
     </Grid>

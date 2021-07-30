@@ -55,11 +55,13 @@
                         FontSize="25"
                         Width="140"
                         Padding="10 5 10 5"
+                        Height="40"
                         Margin="10"
                         Command="{Binding LoginCommand}"/>
                 <Button Content="Register" 
                         FontSize="25"
                         Width="145"
+                        Height="40"
                         Padding="10 5 10 5"
                         Margin="10"
                         Command="{Binding RegisterCommand}"/>

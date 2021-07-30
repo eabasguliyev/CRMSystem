@@ -19,6 +19,9 @@
     <Compile Update="Views\AddEmployeeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CompanySettingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\CompanySetupView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +58,9 @@
     <Compile Update="Views\MainWindowView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\PersonalSettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SettingsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -76,6 +82,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\AddEmployeeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CompanySettingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CompanySetupView.xaml">
@@ -112,6 +121,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PersonalSettingsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SettingsView.xaml">

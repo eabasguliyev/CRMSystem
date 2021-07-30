@@ -26,6 +26,7 @@
                 <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" 
                         FontSize="25"
                         Content="Back"
+                        Height="40"
                         Padding="5"
                         Margin="5"
                         Command="{Binding DataContext.BackBtnClickCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
@@ -39,11 +40,18 @@
                 <StackPanel Grid.Row="0" Grid.RowSpan="2"
                         Grid.Column="3" Orientation="Horizontal"
                         HorizontalAlignment="Right">
+                    <Button Content="Remove"
+                            FontSize="25"
+                            Padding="5"
+                            Height="40"
+                            Margin="5"
+                            Command="{Binding DataContext.RemoveClickCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                     <Button FontSize="25"
                             Content="Edit"
+                            Height="40"
                             Padding="5"
                             Margin="5"
-                            Command="{Binding DataContext.EditBtnCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                            Command="{Binding DataContext.EditClickCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                 </StackPanel>
             </Grid>
 
@@ -342,58 +350,6 @@
                         </Grid>
                     </Grid>
                 </Expander>
-                <Grid Grid.Row="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <ListView Grid.Row="0" ItemsSource="{Binding Notes}" x:Name="ListBoxNotes" ScrollViewer.VerticalScrollBarVisibility="Visible">
-                        <ListView.ItemTemplate>
-                            <DataTemplate DataType="ListBoxItem">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" Text="{Binding Text}"/>
-                                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <TextBox Grid.Row="0" FontSize="20" Height="100"
-                                     x:Name="NoteTextBox"/>
-                        <StackPanel Grid.Row="1"
-                                        Orientation="Horizontal"
-                                        HorizontalAlignment="Right">
-                            <Button FontSize="25"
-                                        Content="Cancel"
-                                        Margin="5"
-                                        Padding="5"/>
-                            <Button FontSize="25"
-                                        Content="Save"
-                                        Margin="5"
-                                        Padding="5"
-                                        Command="{Binding DataContext.SaveNoteCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                        CommandParameter="{Binding ElementName=NoteTextBox, Path=Text}"/>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
             </Grid>
         </Grid>
     </ScrollViewer>

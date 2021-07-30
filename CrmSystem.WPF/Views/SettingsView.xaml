@@ -26,9 +26,19 @@
                         Margin="5"
                         HorizontalAlignment="Left">
                 <Button FontSize="25"
-                        Content="Personal Settings"
-                        Width="200"
-                        Padding="5"/>
+                        Content="Personal Setting"
+                        Width="220"
+                        Height="45"
+                        Padding="5"
+                        Margin="5"
+                        Command="{Binding PersonalSettingClickCommand}"/>
+                <Button FontSize="25"
+                        Content="Company Setting"
+                        Width="220"
+                        Height="45"
+                        Margin="5"
+                        Padding="5"
+                        Command="{Binding CompanySettingClickCommand}"/>
             </StackPanel>
         </Grid>
 
@@ -49,6 +59,7 @@
                         Content="Users"
                         Width="200"
                         Padding="5"
+                        Height="40"
                         Command="{Binding UsersClickCommand}"/>
             </StackPanel>
         </Grid>

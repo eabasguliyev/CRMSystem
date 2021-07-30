@@ -23,29 +23,23 @@
 
             <WrapPanel Grid.Column="0"
                        Orientation="Horizontal">
-                <Button Content="Dashboard"
-                        FontSize="20"
-                        Margin="5"
-                        Padding="5"
-                        Width="100"/>
                 <Button Content="Tasks"
                         FontSize="20"
                         Margin="5"
+                        Height="40"
                         Padding="5"
                         Command="{Binding TasksClickCommand}"/>
                 <Button Content="Contacts"
                         FontSize="20"
                         Margin="0 5 5 5"
                         Padding="5"
+                        Height="40"
                         Command="{Binding ContactsClickCommand}"/>
                 <Button Content="Deals"
                         FontSize="20"
                         Margin="0 5 5 5"
+                        Height="40"
                         Command="{Binding DealsClickCommand}"
-                        Padding="5"/>
-                <Button Content="Products"
-                        FontSize="20"
-                        Margin="0 5 5 5"
                         Padding="5"/>
             </WrapPanel>
 
@@ -65,12 +59,14 @@
                         FontSize="20"
                         Margin="5"
                         Padding="5"
+                        Height="40"
                         Content="Settings"
                         Command="{Binding SettingsClickCommand}"/>
                 <Button Grid.Column="2"
                         FontSize="20"
                         Margin="5"
                         Padding="5"
+                        Height="40"
                         Content="Logout"
                         Command="{Binding LogoutClickCommand}"/>
             </Grid>

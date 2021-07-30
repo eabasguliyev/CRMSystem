@@ -29,6 +29,7 @@
                 <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" 
                         FontSize="25"
                         Content="Back"
+                        Height="40"
                         Padding="5"
                         Margin="5"
                         Command="{Binding DataContext.BackBtnClickCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
@@ -42,14 +43,17 @@
                 <StackPanel Grid.Row="0" Grid.RowSpan="2"
                         Grid.Column="3" Orientation="Horizontal"
                         HorizontalAlignment="Right">
-                    <Button FontSize="25"
-                        Content="Send Email"
-                        Padding="5"
-                        Margin="5"/>
+                    <Button Content="Remove"
+                            FontSize="25"
+                            Padding="5"
+                            Height="40"
+                            Margin="5"
+                            Command="{Binding DataContext.RemoveClickCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
                     <Button FontSize="25"
                         Content="Edit"
                         Padding="5"
                         Margin="5"
+                        Height="40"
                         Command="{Binding DataContext.EditBtnClickCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
 
                 </StackPanel>

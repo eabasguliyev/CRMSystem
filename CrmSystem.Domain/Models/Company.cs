@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CrmSystem.Domain.Models
 {
-    public class Company:DomainObject
+    public class Company:DomainObject, ICloneable
     {
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
@@ -20,6 +21,17 @@ namespace CrmSystem.Domain.Models
             LeadSources = new List<LeadSource>();
             Products = new List<Product>();
             Contracts = new List<Contract>();
+        }
+
+        public object Clone()
+        {
+            return base.MemberwiseClone();
+        }
+
+        public void Update(Company company)
+        {
+            Name = company.Name;
+            PhoneNumber = company.PhoneNumber;
         }
     }
 }

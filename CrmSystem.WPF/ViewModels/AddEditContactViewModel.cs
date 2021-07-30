@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -8,6 +9,7 @@ using CrmSystem.Domain.Models;
 using CrmSystem.EntityFramework;
 using CrmSystem.EntityFramework.Repositories;
 using CrmSystem.WPF.Helpers;
+using Microsoft.Win32;
 
 namespace CrmSystem.WPF.ViewModels
 {
@@ -56,6 +58,8 @@ namespace CrmSystem.WPF.ViewModels
         public ICommand SaveClickCommand { get; set; }
         public ICommand SaveAndNewClickCommand { get; set; }
         public ICommand CancelClickCommand { get; set; }
+        public ICommand RemoveClickCommand { get; set; }
+        public ICommand SelectImageCommand { get; set; }
 
         public event Action SaveOrCancelClicked;
 
@@ -78,6 +82,36 @@ namespace CrmSystem.WPF.ViewModels
             SaveClickCommand = new RelayCommand(Save);
             CancelClickCommand = new RelayCommand(Cancel);
             SaveAndNewClickCommand = new RelayCommand(SaveAndNew);
+            SelectImageCommand = new RelayCommand(SelectImage);
+        }
+
+        private void SelectImage()
+        {
+            var imagePath = GetFilePath();
+
+            if (string.IsNullOrWhiteSpace(imagePath))
+            {
+                return;
+            }
+
+            var imageAsBytes = GetImageBytes(imagePath);
+
+            EditableContact.Image = imageAsBytes ?? null;
+        }
+
+        private byte[] GetImageBytes(string? imagePath)
+        {
+            return File.ReadAllBytes(imagePath);
+        }
+
+        private string? GetFilePath()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = true;
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : null;
         }
 
         private void SaveAndNew()

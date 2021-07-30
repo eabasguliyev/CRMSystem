@@ -27,9 +27,11 @@ namespace CrmSystem.WPF.ViewModels
             EditBtnCommand = new RelayCommand(Edit);
             CloseTaskBtnCommand = new RelayCommand(CloseTask);
             SaveNoteCommand = new RelayCommand(SaveNote);
+            RemoveClickCommand = new RelayCommand(Remove);
         }
 
-       
+
+        
         public BaseTask Task
         {
             get => _task;
@@ -60,12 +62,24 @@ namespace CrmSystem.WPF.ViewModels
         public ICommand BackBtnClickCommand { get; set; }
         public ICommand EditBtnCommand { get; set; }
         public ICommand CloseTaskBtnCommand { get; set; }
+        public ICommand RemoveClickCommand { get; set; }
         public ICommand SaveNoteCommand  { get; set; }
 
         public event Action<ObservableObject> BackVmRequested;
         public event EventHandler<AddEditTaskEventArgs> EditButtonClicked;
+        public event Action RemoveButtonClicked;
 
 
+
+        private void Remove()
+        {
+            _unitOfWork.ContactTasks.Remove(Task as ContactTask);
+            _unitOfWork.Save();
+
+            MessageBox.Show("Task removed", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            RemoveButtonClicked?.Invoke();
+        }
 
         private void SaveNote()
         {

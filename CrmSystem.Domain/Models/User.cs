@@ -4,11 +4,22 @@ namespace CrmSystem.Domain.Models
 {
     public abstract class User:DomainObject, ICloneable
     {
+        private byte[] _image;
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName => FirstName + ' ' + LastName;
         public string Email { get; set; }
-        public string ImageLink { get; set; }
+
+        public byte[] Image
+        {
+            get => _image;
+            set
+            {
+                _image = value;
+                base.OnPropertyChanged();
+            }
+        }
+
         public string Phone { get; set; }
         public string Mobile { get; set; }
         public DateTime? Birthdate { get; set; }
@@ -34,7 +45,7 @@ namespace CrmSystem.Domain.Models
             FirstName = user.FirstName;
             LastName = user.LastName;
             Email = user.Email;
-            ImageLink = user.ImageLink;
+            Image = user.Image;
             Phone = user.Phone;
             Mobile = user.Mobile;
             Birthdate = user.Birthdate;

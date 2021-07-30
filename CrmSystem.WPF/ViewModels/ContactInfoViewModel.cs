@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -26,6 +27,18 @@ namespace CrmSystem.WPF.ViewModels
             BackBtnClickCommand = new RelayCommand(Back);
             SaveNoteCommand = new RelayCommand(SaveNote);
             EditBtnClickCommand = new RelayCommand(Edit);
+            RemoveClickCommand = new RelayCommand(Remove);
+        }
+
+
+        private void Remove()
+        {
+            _unitOfWork.Contacts.Remove(Contact);
+            _unitOfWork.Save();
+
+            MessageBox.Show("Contact removed", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            RemoveButtonClicked?.Invoke();
         }
 
         private void Edit()
@@ -83,9 +96,12 @@ namespace CrmSystem.WPF.ViewModels
         public ICommand BackBtnClickCommand { get; set; }
         public ICommand SaveNoteCommand { get; set; }
         public ICommand EditBtnClickCommand { get; set; }
+        public ICommand RemoveClickCommand { get; set; }
+
 
         public event Action<ObservableObject> BackVmRequested;
         public event EventHandler<AddEditContactEventArgs> EditButtonClicked;
+        public event Action RemoveButtonClicked;
 
 
         public ObservableCollection<Note> Notes => new ObservableCollection<Note>(Contact.Notes);

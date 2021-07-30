@@ -19,7 +19,7 @@ namespace CrmSystem.Domain.Models
         public RoleOption Role { get; set; }
         public ProfileOption Profile { get; set; }
 
-        public void Update(BaseEmployee employee)
+        public virtual void Update(BaseEmployee employee)
         {
             Role = employee.Role;
             Profile = employee.Profile;

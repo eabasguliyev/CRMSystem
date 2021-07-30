@@ -22,6 +22,9 @@ namespace CrmSystem.WPF.ViewModels
         private DealsViewModel _dealsViewModel;
         private AddEditDealViewModel _addEditDealViewModel;
         private DealInfoViewModel _dealInfoViewModel;
+        private PersonalSettingsViewModel _personalSettingViewModel;
+        private CompanySettingViewModel _companySettingViewModel;
+
 
         public Employee LoggedUser => App.LoggedUser;
 
@@ -42,6 +45,10 @@ namespace CrmSystem.WPF.ViewModels
 
             _settingsViewModel = new SettingsViewModel();
             _settingsViewModel.UsersButtonClicked += NavToEmployeesView;
+            _settingsViewModel.PersonalSettingButtonClicked += NavToPersonalSetting;
+            _settingsViewModel.CompanySettingButtonClicked += NavToCompanySetting;
+
+
             _companySetupViewModel = new CompanySetupViewModel(_unitOfWork);
             _companySetupViewModel.InitialSetupCompleted += OnInitialSetupCompleted;
 
@@ -57,10 +64,12 @@ namespace CrmSystem.WPF.ViewModels
             _contactInfoViewModel = new ContactInfoViewModel(_unitOfWork);
             _contactInfoViewModel.BackVmRequested += NavToPreviousVm;
             _contactInfoViewModel.EditButtonClicked += NavToAddEditContact;
+            _contactInfoViewModel.RemoveButtonClicked += NavToContacts;
 
             _taskInfoViewModel = new TaskInfoViewModel(_unitOfWork);
             _taskInfoViewModel.BackVmRequested += NavToPreviousVm;
             _taskInfoViewModel.EditButtonClicked += NavToAddEditTask;
+            _taskInfoViewModel.RemoveButtonClicked += NavToTasks;
 
             _dealsViewModel = new DealsViewModel(_unitOfWork);
             _dealsViewModel.CreateOrEditDealClicked += NavToAddEditDeal;
@@ -70,6 +79,19 @@ namespace CrmSystem.WPF.ViewModels
             _addEditDealViewModel.SaveOrCancelClicked += NavToDeals;
 
             _dealInfoViewModel = new DealInfoViewModel(_unitOfWork);
+            _dealInfoViewModel.RemoveButtonClicked += NavToDeals;
+            _dealInfoViewModel.EditButtonClicked += NavToAddEditDeal;
+            _dealInfoViewModel.BackVmRequested += NavToPreviousVm;
+
+
+            _personalSettingViewModel = new PersonalSettingsViewModel(_unitOfWork);
+            _personalSettingViewModel.SaveButtonClicked += NavToSettings;
+            _personalSettingViewModel.BackVmRequested += NavToPreviousVm;
+
+            _companySettingViewModel = new CompanySettingViewModel(_unitOfWork);
+            _companySettingViewModel.BackVmRequested += NavToPreviousVm;
+            _companySettingViewModel.SaveButtonClicked += NavToSettings;
+
 
             ContactsClickCommand = new RelayCommand(NavToContacts);
             SettingsClickCommand = new RelayCommand(NavToSettings);
@@ -78,9 +100,26 @@ namespace CrmSystem.WPF.ViewModels
             DealsClickCommand = new RelayCommand(NavToDeals);
         }
 
+        private void NavToCompanySetting()
+        {
+            _companySettingViewModel.BackVM = CurrentViewModel;
+            _companySettingViewModel.Company = App.Company;
+
+            CurrentViewModel = _companySettingViewModel;
+        }
+
+        private void NavToPersonalSetting()
+        {
+            _personalSettingViewModel.Employee = App.LoggedUser;
+            _personalSettingViewModel.BackVM = CurrentViewModel;
+
+            CurrentViewModel = _personalSettingViewModel;
+        }
+
         private void NavToDealInfo(Contract deal)
         {
             _dealInfoViewModel.Deal = deal;
+            _dealInfoViewModel.BackVM = CurrentViewModel;
             CurrentViewModel = _dealInfoViewModel;
         }
 
